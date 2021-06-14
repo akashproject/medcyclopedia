@@ -1,5 +1,7 @@
 {
   "name": "medcyclopedia",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
