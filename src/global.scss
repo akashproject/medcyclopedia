@@ -24,3 +24,87 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    background-color: #f6f9fe;
+}
+ion-content{
+    --ion-background-color:#f6f9fe;
+}
+
+.d-flex{
+    display: flex;
+}
+
+ul{
+    margin: 0; padding: 0; 
+    li{
+        list-style: none; margin: 0; padding: 0;
+    }
+}
+
+.align-center{
+    align-items: center;
+}
+.justify-between{
+    justify-content: space-between;
+}
+.justify-center{
+    justify-content: center;
+}
+.flex-column{
+    flex-direction: column;
+}
+
+
+
+ion-header{
+    &.header-md::after{
+        background-image: none;
+    }
+    .top{
+        height: 8.4rem; background-color: #fafafa; padding: 0 1rem; position: relative;
+        .avator_section{
+            font-size: 1.3rem; font-weight: 500;
+            img{
+                height: 4.9rem; margin-right: 2rem;
+            }
+        
+        }
+        .right_icon_details{
+            .search{
+                margin-right: 2.3rem;
+            }            
+            img{
+                height: 1.6rem; cursor: pointer;
+            }
+        }
+    }
+    .home_tab_back{
+        width: 100%; background-color: #fafafa; padding: 1rem;
+        li{
+            margin-right: 3rem; font-size: 1.4rem; text-transform: capitalize; color: #434343;
+            &:last-child{
+                margin-right: 0;
+            }
+            img{
+                height: 2rem; width: auto; object-fit: contain; margin-bottom: .8rem; 
+            }
+        }
+    }
+    
+}
+
+.swiper-pagination{ 
+    position: absolute; left: 0; bottom: 1rem !important; margin: auto; 
+    span{ 
+        width: 1.4rem; height: 1.4rem; background-color: #aaaaaa; border: none; opacity: 1; margin: 0 1.3rem 0 0 !important; 
+        &:last-child{margin: 0;}
+        &.swiper-pagination-bullet-active{background-color: #e85c23; }
+    }
+    
+}
