@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ export class HeaderComponent implements OnInit {
 
   menu: boolean = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   menuopen(){
     this.menu = !this.menu;

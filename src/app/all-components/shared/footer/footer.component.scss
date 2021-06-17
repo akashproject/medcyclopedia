@@ -13,6 +13,9 @@ footer{
                     &:hover{
                         background-image: url(../../../../assets/images/f1_hover.png);
                     }
+                    &.router-link-active{
+                        background-image: url(../../../../assets/images/f1_hover.png);
+                    }
                 }
             }
             &:nth-child(2){
@@ -20,6 +23,9 @@ footer{
                     background-image: url(../../../../assets/images/f2.png);
                     &:hover{
                         background-image: url(../../../../assets/images/f2_hover.png);
+                    }
+                    &.router-link-active{
+                        background-image: url(../../../../assets/images/f1_hover.png);
                     }
                 }
             }
@@ -29,6 +35,9 @@ footer{
                     &:hover{
                         background-image: url(../../../../assets/images/f3_hover.png);
                     }
+                    &.router-link-active{
+                        background-image: url(../../../../assets/images/f1_hover.png);
+                    }
                 }
             }
             &:last-child{
@@ -37,12 +46,18 @@ footer{
                     &:hover{
                         background-image: url(../../../../assets/images/f4_hover.png);
                     }
+                    &.router-link-active{
+                        background-image: url(../../../../assets/images/f1_hover.png);
+                    }
                 }
             }
         }
         .port{
-            width: 100%; color: #000; text-transform: capitalize; font-size: 1.3rem; background-position: center top; padding-top: 3rem; background-repeat: no-repeat; background-size: 26%; transition: all .3s ease-in-out;
+            width: 100%; color: #000; text-transform: capitalize; font-size: 1.2rem; background-position: center top; padding-top: 3rem; background-repeat: no-repeat; background-size: 2.6rem; transition: all .3s ease-in-out;
             &:hover{
+                color: #e85b23;
+            }
+            &.router-link-active{
                 color: #e85b23;
             }
             img{

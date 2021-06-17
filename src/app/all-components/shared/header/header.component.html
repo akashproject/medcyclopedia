@@ -1,30 +1,48 @@
-<ion-header>
-  <div class="top d-flex align-center justify-between">
-    <div class="avator_section d-flex align-center">
-      <img src="assets/images/pro_avator.png" alt="">
-      <span>Welcome Rahul</span>      
+<ng-container 
+*ngIf="router.url === '/exam-institutions'; then blankheader; else mainheader">
+</ng-container>
+
+<ng-template #blankheader>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/" text="" icon="arrow-back-outline"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Medcyclopedia</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ng-template> 
+<ng-template #mainheader>
+  <ion-header>
+    <div class="top d-flex align-center justify-between">
+      <div class="avator_section d-flex align-center">
+        <img src="assets/images/pro_avator.png" alt="">
+        <span>Welcome Rahul</span>      
+      </div>
+      <div class="right_icon_details d-flex align-center">
+          <div class="search"><img src="assets/images/search.png" alt=""></div>
+          <div class="list" (click)="menuopen()"><img src="assets/images/list.png" alt=""></div>
+      </div>
+      <ul class="menu" [class.open]="menu">
+        <li class="d-flex align-center">About Infinity</li>
+        <li class="d-flex align-center">News and Events</li>
+        <li class="d-flex align-center">Media</li>
+        <li class="d-flex align-center">T & C</li>
+        <li class="d-flex align-center"><img src="assets/images/logout.png" alt="">Logout</li>
+      </ul>
     </div>
-    <div class="right_icon_details d-flex align-center">
-        <div class="search"><img src="assets/images/search.png" alt=""></div>
-        <div class="list" (click)="menuopen()"><img src="assets/images/list.png" alt=""></div>
-    </div>
-    <ul class="menu" [class.open]="menu">
-      <li class="d-flex align-center">About Infinity</li>
-      <li class="d-flex align-center">News and Events</li>
-      <li class="d-flex align-center">Media</li>
-      <li class="d-flex align-center">T & C</li>
-      <li class="d-flex align-center"><img src="assets/images/logout.png" alt="">Logout</li>
+    <ul class="home_tab_back d-flex">
+      <li class="d-flex flex-column" [routerLink]="['/profile']">
+        <img src="assets/images/profile.png" alt="">
+        Profile
+      </li>
+      <li class="d-flex flex-column">
+        <img src="assets/images/profile2.png" alt="">
+        refer & Earn
+      </li>
     </ul>
-  </div>
-  <ul class="home_tab_back d-flex">
-    <li class="d-flex flex-column">
-      <img src="assets/images/profile.png" alt="">
-      Profile
-    </li>
-    <li class="d-flex flex-column">
-      <img src="assets/images/profile2.png" alt="">
-      refer & Earn
-    </li>
-  </ul>
-</ion-header>
-<app-banner></app-banner>
+  </ion-header>
+  <app-banner></app-banner>
+</ng-template>
+
+

@@ -47,6 +47,16 @@ ul{
     }
 }
 
+.wrapper{
+    width: 100%; padding: 1.4rem;
+}
+.alert-wrapper.sc-ion-alert-md{
+    max-width: 80%; width: 100%;
+}
+ion-select{
+    width: 100%;  font-size: 1.5rem; border: #e6e6e6 1px solid; border-radius: 10px; color: #000;
+}
+
 .align-center{
     align-items: center;
 }
@@ -63,6 +73,20 @@ ul{
 
 
 ion-header{
+    box-shadow: rgba(0,0,0,.2) 1px 0 5px;
+    ion-title{
+        font-size: 1.6rem;
+        text-align: center;
+        padding: 0;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        width: 100%;
+        left: 0; font-weight: 600;
+    }
+    ion-back-button{
+        color: #0c4d9d; font-size: 1.6rem;
+    }
     &.header-md::after{
         background-image: none;
     }
