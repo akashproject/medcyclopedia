@@ -1,5 +1,6 @@
 <ng-container 
-*ngIf="router.url === '/exam-institutions'; then blankheader; else mainheader">
+*ngIf="router.url === '/exam-institutions' ||  
+router.url === '/find-institutions-form'; then blankheader; else mainheader">
 </ng-container>
 
 <ng-template #blankheader>

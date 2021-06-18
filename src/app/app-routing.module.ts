@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'exam-institutions',
     loadChildren: () => import('./all-pages/exam-institutions/exam-institutions.module').then( m => m.ExamInstitutionsPageModule)
   },
+  {
+    path: 'find-institutions-form',
+    loadChildren: () => import('./all-pages/find-institutions-form/find-institutions-form.module').then( m => m.FindInstitutionsFormPageModule)
+  },
 
 
 ];
