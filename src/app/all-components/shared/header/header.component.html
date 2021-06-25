@@ -1,6 +1,9 @@
 <ng-container 
 *ngIf="router.url === '/exam-institutions' ||  
-router.url === '/find-institutions-form'; then blankheader; else mainheader">
+router.url === '/find-institutions-form' ||
+router.url === '/mbbs-abroad' ||
+router.url === '/panel-discussion' ||
+router.url === '/notifications'; then blankheader; else mainheader">
 </ng-container>
 
 <ng-template #blankheader>

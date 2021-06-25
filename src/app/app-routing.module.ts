@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./all-pages/profile/profile.module').then( m => m.ProfilePageModule)
-  },  {
+  },
+  {
     path: 'my-institutions',
     loadChildren: () => import('./all-pages/my-institutions/my-institutions.module').then( m => m.MyInstitutionsPageModule)
   },
@@ -34,7 +35,19 @@ const routes: Routes = [
     path: 'find-institutions-form',
     loadChildren: () => import('./all-pages/find-institutions-form/find-institutions-form.module').then( m => m.FindInstitutionsFormPageModule)
   },
-
+  {
+    path: 'mbbs-abroad',
+    loadChildren: () => import('./all-pages/mbbs-abroad/mbbs-abroad.module').then( m => m.MbbsAbroadPageModule)
+  },
+  {
+    path: 'panel-discussion',
+    loadChildren: () => import('./all-pages/panel-discussion/panel-discussion.module').then( m => m.PanelDiscussionPageModule)
+  },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./all-pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
+  }
+ 
 
 ];
 @NgModule({
