@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'notifications',
     loadChildren: () => import('./all-pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+  {
+    path: 'explore-exam',
+    loadChildren: () => import('./all-pages/explore-exam/explore-exam.module').then( m => m.ExploreExamPageModule)
   }
  
 
