@@ -1,13 +1,12 @@
 <ng-container 
-*ngIf="router.url === '/exam-institutions' ||  
-router.url === '/find-institutions-form' ||
-router.url === '/mbbs-abroad' ||
-router.url === '/panel-discussion' ||
-router.url === '/notifications'||
-router.url === '/explore-exam'; then blankheader; else mainheader">
+*ngIf="router.url === '/home' ||  
+router.url === '/my-institutions' ||
+router.url === '/my-activity' ||
+router.url === '/my-alerts'||
+router.url === '/profile';then mainheader; else titleheader">
 </ng-container>
 
-<ng-template #blankheader>
+<ng-template #titleheader>
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
@@ -29,11 +28,11 @@ router.url === '/explore-exam'; then blankheader; else mainheader">
           <div class="list" (click)="menuopen()"><img src="assets/images/list.png" alt=""></div>
       </div>
       <ul class="menu" [class.open]="menu">
-        <li class="d-flex align-center">About Infinity</li>
-        <li class="d-flex align-center">News and Events</li>
-        <li class="d-flex align-center">Media</li>
-        <li class="d-flex align-center">T & C</li>
-        <li class="d-flex align-center"><img src="assets/images/logout.png" alt="">Logout</li>
+        <li class="d-flex align-center" (click)="menuclose()" [routerLink]="['/aboutus']">About Infinity</li>
+        <li class="d-flex align-center" (click)="menuclose()" >News and Events</li>
+        <li class="d-flex align-center" (click)="menuclose()">Media</li>
+        <li class="d-flex align-center" (click)="menuclose()" [routerLink]="['/terms']">T & C</li>
+        <li class="d-flex align-center" (click)="menuclose()"><img src="assets/images/logout.png" alt="">Logout</li>
       </ul>
     </div>
     <ul class="home_tab_back d-flex">

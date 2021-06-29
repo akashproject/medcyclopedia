@@ -50,7 +50,40 @@ const routes: Routes = [
   {
     path: 'explore-exam',
     loadChildren: () => import('./all-pages/explore-exam/explore-exam.module').then( m => m.ExploreExamPageModule)
-  }
+  },
+  {
+    path: 'explore-exam-details',
+    loadChildren: () => import('./all-pages/explore-exam-details/explore-exam-details.module').then( m => m.ExploreExamDetailsPageModule)
+  },
+  {
+    path: 'explore-exam-details-inner',
+    loadChildren: () => import('./all-pages/explore-exam-details-inner/explore-exam-details-inner.module').then( m => m.ExploreExamDetailsInnerPageModule)
+  },
+  {
+    path: 'country-info',
+    loadChildren: () => import('./all-pages/country-info/country-info.module').then( m => m.CountryInfoPageModule)
+  },
+  {
+    path: 'expert-counselling',
+    loadChildren: () => import('./all-pages/expert-counselling/expert-counselling.module').then( m => m.ExpertCounsellingPageModule)
+  },
+  {
+    path: 'education-loan-assistance',
+    loadChildren: () => import('./all-pages/education-loan-assistance/education-loan-assistance.module').then( m => m.EducationLoanAssistancePageModule)
+  },
+  {
+    path: 'scholarships',
+    loadChildren: () => import('./all-pages/scholarships/scholarships.module').then( m => m.ScholarshipsPageModule)
+  },
+  {
+    path: 'aboutus',
+    loadChildren: () => import('./all-pages/aboutus/aboutus.module').then( m => m.AboutusPageModule)
+  },
+  {
+    path: 'terms',
+    loadChildren: () => import('./all-pages/terms/terms.module').then( m => m.TermsPageModule)
+  },
+  
  
 
 ];
