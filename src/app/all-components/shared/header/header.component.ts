@@ -8,16 +8,18 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  
   menu: boolean = false;
-
   constructor(private router: Router) { }
-
+  
   menuopen(){
     this.menu = !this.menu;
   }
   menuclose(){
     this.menu = false;
   }
+
+ 
 
   
 

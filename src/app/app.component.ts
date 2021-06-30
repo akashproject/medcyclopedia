@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor() {}
+  menu: boolean = false;
+  menuopen(){
+    this.menu = !this.menu;
+  }
+  menuclose(){
+    this.menu = false;
+  }
+
 }

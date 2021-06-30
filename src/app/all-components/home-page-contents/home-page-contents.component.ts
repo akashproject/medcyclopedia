@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageContentsComponent implements OnInit {
 
+  
+
   constructor() { }
+
+  
 
   slideOpts = {
     initialSlide: 0,
@@ -19,6 +23,7 @@ export class HomePageContentsComponent implements OnInit {
     grabCursor: true,
     spaceBetween: 0,    
   };
+  
 
   ngOnInit() {}
 

@@ -83,6 +83,42 @@ const routes: Routes = [
     path: 'terms',
     loadChildren: () => import('./all-pages/terms/terms.module').then( m => m.TermsPageModule)
   },
+  {
+    path: 'signup',
+    loadChildren: () => import('./all-pages/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'refer-earn',
+    loadChildren: () => import('./all-pages/refer-earn/refer-earn.module').then( m => m.ReferEarnPageModule)
+  },
+  {
+    path: 'news-events',
+    loadChildren: () => import('./all-pages/news-events/news-events.module').then( m => m.NewsEventsPageModule)
+  },
+  {
+    path: 'news-events-inner',
+    loadChildren: () => import('./all-pages/news-events-inner/news-events-inner.module').then( m => m.NewsEventsInnerPageModule)
+  },
+  {
+    path: 'media',
+    loadChildren: () => import('./all-pages/media/media.module').then( m => m.MediaPageModule)
+  },
+  {
+    path: 'media-inner',
+    loadChildren: () => import('./all-pages/media-inner/media-inner.module').then( m => m.MediaInnerPageModule)
+  },
+  {
+    path: 'detailed-page-view',
+    loadChildren: () => import('./all-pages/detailed-page-view/detailed-page-view.module').then( m => m.DetailedPageViewPageModule)
+  },
+  {
+    path: 'course-application',
+    loadChildren: () => import('./all-pages/course-application/course-application.module').then( m => m.CourseApplicationPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./all-pages/search/search.module').then( m => m.SearchPageModule)
+  },
   
  
 

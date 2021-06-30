@@ -7,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScholarshipsContentComponent implements OnInit {
 
+  pop:boolean = false;
+
   constructor() { }
+
+  popOpen(){
+    this.pop = true;
+  }
+  popClose(){
+    this.pop = false;
+  }
 
   ngOnInit() {}
 

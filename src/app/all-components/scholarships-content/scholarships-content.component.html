@@ -6,7 +6,7 @@
     <h2>All India Pre-medical Scholarship Test</h2>
   </div>
   <div class="button">
-    <ion-button color="custom" fill="clear">
+    <ion-button color="custom" fill="clear" (click)="popOpen()">
       Details
     </ion-button>
   </div>
@@ -19,7 +19,7 @@
     <h2>All India Youth Scholarships Entrance Examinations (AIYSEE)</h2>
   </div>
   <div class="button">
-    <ion-button color="custom" fill="clear">
+    <ion-button color="custom" fill="clear" (click)="popOpen()">
       Details
     </ion-button>
   </div>
@@ -32,10 +32,21 @@
     <h2>Combined Counselling Board Scholarship (CCB)</h2>
   </div>
   <div class="button">
-    <ion-button color="custom" fill="clear">
+    <ion-button color="custom" fill="clear" (click)="popOpen()">
       Details
     </ion-button>
   </div>
 </div>
 
+<div class="popup" *ngIf="pop">
+  <div class="back">
+    <ion-icon name="close-outline" (click)="popClose()"></ion-icon>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste veniam, quia excepturi quas, optio voluptas eligendi accusantium</p>
+    <div class="del">
+      <span>Description</span>
+      <a href="">CLICK HERE TO VIEW</a>
+    </div>
+  </div>
+  
+</div>
 
