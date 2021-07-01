@@ -1,0 +1,27 @@
+<div class="site_form_baCK">
+  <div class="head">
+    <img src="assets/images/site_logo.png" alt="">
+    <h2>login</h2>
+  </div>
+  <div class="form_baCK">
+    <h6>Login with</h6>
+    <form>
+      <div class="port">
+        <p>Mobile Number</p>
+        <input type="text" name="" id="">
+      </div>
+      <div class="port">
+        <p>Password</p>
+        <input type="password" name="" id="">
+      </div>
+      <ion-button color="custom" fill="clear" [routerLink]="['/home']">
+        Submit
+      </ion-button>
+    </form>
+  </div>
+  <div class="foot">
+    <h5 [routerLink]="['/signup-first-step']">First time here?</h5>
+    <h6>Forgot Password? Retrive <span [routerLink]="['/forgot-password']">Here!</span></h6>
+    <h3 [routerLink]="['/before-login-aboutus']">about us</h3>
+  </div>
+</div>

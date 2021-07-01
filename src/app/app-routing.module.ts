@@ -3,13 +3,17 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./all-pages/home/home.module').then( m => m.HomePageModule)
+    path: 'entrypoint',
+    loadChildren: () => import('./all-pages/entrypoint/entrypoint.module').then( m => m.EntrypointPageModule)
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'entrypoint',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./all-pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'profile',
@@ -83,10 +87,7 @@ const routes: Routes = [
     path: 'terms',
     loadChildren: () => import('./all-pages/terms/terms.module').then( m => m.TermsPageModule)
   },
-  {
-    path: 'signup',
-    loadChildren: () => import('./all-pages/signup/signup.module').then( m => m.SignupPageModule)
-  },
+  
   {
     path: 'refer-earn',
     loadChildren: () => import('./all-pages/refer-earn/refer-earn.module').then( m => m.ReferEarnPageModule)
@@ -119,6 +120,27 @@ const routes: Routes = [
     path: 'search',
     loadChildren: () => import('./all-pages/search/search.module').then( m => m.SearchPageModule)
   },
+  {
+    path: 'signin',
+    loadChildren: () => import('./all-pages/signin/signin.module').then( m => m.SigninPageModule)
+  },
+  {
+    path: 'signup-first-step',
+    loadChildren: () => import('./all-pages/signup-first-step/signup-first-step.module').then( m => m.SignupFirstStepPageModule)
+  },
+  {
+    path: 'signup-second-step',
+    loadChildren: () => import('./all-pages/signup-second-page/signup-second-page.module').then( m => m.SignupSecondPagePageModule)
+  },
+  {
+    path: 'before-login-aboutus',
+    loadChildren: () => import('./all-pages/before-login-aboutus/before-login-aboutus.module').then( m => m.BeforeLoginAboutusPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./all-pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  }
+  
   
  
 
