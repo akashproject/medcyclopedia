@@ -5,25 +5,25 @@
     <h3>Step 1/2</h3>
   </div>
   <div class="form_baCK">
-    <form>
+    <form [formGroup]="otpForm" (ngSubmit)="register()">
       <div class="port">
         <p>Mobile</p>
-        <input type="text" name="" id="">
+        <input type="text" formControlName="mobile" id="mobile">
       </div>
       <div class="port">
         <p>Mobile OTP</p>
         <div class="otp">
-          <input type="text" name="" id="">
-          <input type="text" name="" id="">
-          <input type="text" name="" id="">
-          <input type="text" name="" id="">
-          <input type="text" name="" id="">
-          <input type="text" name="" id="">
+          <input type="text" formControlName="place1" id="place1">
+          <input type="text" formControlName="place2" id="place2">
+          <input type="text" formControlName="place3" id="place3">
+          <input type="text" formControlName="place4" id="place4">
+          <input type="text" formControlName="place5" id="place5">
+          <input type="text" formControlName="place6" id="place6">
         </div>
         
       </div>
       
-      <ion-button color="custom" fill="clear"[routerLink]="['/home']">
+      <ion-button type="submit" color="custom" fill="clear"[routerLink]="['/home']">
         Submit
       </ion-button>
     </form>
