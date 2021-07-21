@@ -139,6 +139,10 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./all-pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'institute-list',
+    loadChildren: () => import('./all-pages/institute-list/institute-list.module').then( m => m.InstituteListPageModule)
   }
   
   

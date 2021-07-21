@@ -8,9 +8,9 @@ import { IonSlides} from '@ionic/angular';
 })
 export class EntrypointContentComponent implements OnInit {
 
-  slides: IonSlides;
+  
 
-  button_auth: boolean = false;
+  
   constructor() { }
 
   slideOpts = {
@@ -25,15 +25,9 @@ export class EntrypointContentComponent implements OnInit {
   };
 
   ngOnInit() {
-    setTimeout(() => {
-
-      this.button_auth = true;
-    }, 6000);
+    
   }
 
-  swipeNext(){
-    this.slides.slideNext();
-  }
   
 
   
