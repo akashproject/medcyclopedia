@@ -47,6 +47,7 @@ export class SignupFirstStepContentComponent implements OnInit {
     this.userDetails.setName(this.name);
     this.userDetails.setMobile(this.signupForm.value.mobile);
     this.userDetails.setPassword(this.signupForm.value.password);
+    this.userDetails.setEmail(this.signupForm.value.email);
 
     // this.otp.sendotp(this.userDetails.getMobile());
 
