@@ -143,7 +143,28 @@ const routes: Routes = [
   {
     path: 'institute-list',
     loadChildren: () => import('./all-pages/institute-list/institute-list.module').then( m => m.InstituteListPageModule)
-  }
+  },
+  {
+    path: 'institute-list-details',
+    loadChildren: () => import('./all-pages/institute-list-details/institute-list-details.module').then( m => m.InstituteListDetailsPageModule)
+  },
+  {
+    path: 'photo-gallery',
+    loadChildren: () => import('./all-pages/photo-gallery/photo-gallery.module').then( m => m.PhotoGalleryPageModule)
+  },
+  {
+    path: 'courses',
+    loadChildren: () => import('./all-pages/courses/courses.module').then( m => m.CoursesPageModule)
+  },
+  
+  {
+    path: 'institute-confirmation',
+    loadChildren: () => import('./all-pages/institute-confirmation/institute-confirmation.module').then( m => m.InstituteConfirmationPageModule)
+  },
+  {
+    path: 'otp',
+    loadChildren: () => import('./all-pages/otp/otp.module').then( m => m.OtpPageModule)
+  },
   
   
  
