@@ -7,14 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileContentsComponent implements OnInit {
 
+
+  f_name : string;
   constructor() { }
 
   edit_pro: boolean = true;
   save_pro: boolean = false;
 
   editProButton(){
-    this.edit_pro = false;
-    this.save_pro = true;
+    this.onTogglenotEditMode();
+    // this.edit_pro = false;
+    // this.save_pro = true;
+
+    this.edit_pro = !this.edit_pro;
+    this.save_pro = !this.save_pro;
+
+    console.log(this.f_name);
   }
 
   cancleProButton(){
@@ -22,6 +30,10 @@ export class ProfileContentsComponent implements OnInit {
     this.save_pro = false;
   }
 
+  notEditMode = true;
+  onTogglenotEditMode() {
+    this.notEditMode = !this.notEditMode;
+  }
   ngOnInit() {}
 
 }
