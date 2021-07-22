@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursedetailsService } from 'src/app/all-services/coursedetails.service';
+import { ExamsService } from 'src/app/all-services/exams.service';
 
 @Component({
   selector: 'app-explore-exam-details-content',
@@ -7,8 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExploreExamDetailsContentComponent implements OnInit {
 
-  constructor() { }
+  allExams : any;
 
-  ngOnInit() {}
+  constructor(private coursedetailsservice : CoursedetailsService,
+              private examService : ExamsService) { }
+
+  ngOnInit() {
+    console.log(this.coursedetailsservice.getCourseId());
+    this.examService.getExamsById(this.coursedetailsservice.getCourseId()).subscribe(res =>{
+      console.log(res);
+      this.allExams = res;
+    })
+  }
 
 }

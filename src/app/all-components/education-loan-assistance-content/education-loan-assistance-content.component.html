@@ -1,7 +1,7 @@
-<div class="card">
+<div class="card" *ngFor="let bank of allBanks">
   <div class="area">
-    <img src="assets/images/b1.png" alt="">
-    <h2>Axis Bank</h2>
+    <img src="assets/images/{{ bank.bank_name }}.png" alt="">
+    <h2>{{ bank.bank_name}}</h2>
   </div>
   <div class="button">
     <ion-button color="custom" fill="clear">
@@ -11,7 +11,7 @@
   
 </div>
 
-<div class="card">
+<!-- <div class="card">
   <div class="area">
     <img src="assets/images/b2.png" alt="">
     <h2>Bank of Baroda</h2>
@@ -111,4 +111,4 @@
       Details
     </ion-button>
   </div>
-</div>
+</div> -->

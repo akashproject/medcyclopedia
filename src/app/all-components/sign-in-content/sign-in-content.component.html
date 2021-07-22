@@ -5,16 +5,16 @@
   </div>
   <div class="form_baCK">
     <h6>Login with</h6>
-    <form>
+    <form [formGroup]="signinForm" (ngSubmit)="signin()">
       <div class="port">
         <p>Mobile Number</p>
-        <input type="text" name="" id="">
+        <input type="text" formControlName="mobile" id="mobile">
       </div>
       <div class="port">
         <p>Password</p>
-        <input type="password" name="" id="">
+        <input type="password" formControlName="password" id="password">
       </div>
-      <ion-button color="custom" fill="clear" [routerLink]="['/home']">
+      <ion-button type="submit" color="custom" fill="clear">
         Submit
       </ion-button>
     </form>

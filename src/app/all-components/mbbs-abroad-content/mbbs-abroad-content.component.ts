@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CountriesService } from 'src/app/all-services/countries.service';
 
 @Component({
   selector: 'app-mbbs-abroad-content',
@@ -7,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MbbsAbroadContentComponent implements OnInit {
 
-  constructor() { }
+  allCountries : any;
 
-  ngOnInit() {}
+  constructor(private countriesService : CountriesService) { }
+
+  ngOnInit() {
+
+    this.countriesService.getCountries().subscribe(res =>{
+      console.log(res);
+      this.allCountries = res;
+    })
+  }
 
 }

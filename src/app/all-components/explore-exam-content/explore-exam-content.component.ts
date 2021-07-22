@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CoursedetailsService } from 'src/app/all-services/coursedetails.service';
+import { CoursesService } from 'src/app/all-services/courses.service';
 
 @Component({
   selector: 'app-explore-exam-content',
@@ -7,8 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExploreExamContentComponent implements OnInit {
 
-  constructor() { }
+  allCourses : any;
+  constructor(private courseService : CoursesService,
+              private coursedetailsservice : CoursedetailsService,
+              private router : Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.courseService.getCourses().subscribe(res =>{
+      console.log(res);
+      this.allCourses = res;
+    })
+  }
+
+  getId(id : string){
+    console.log(id);
+    this.coursedetailsservice.setCourseId(id);
+    this.router.navigate(['/explore-exam-details']);
+    
+  }
 
 }

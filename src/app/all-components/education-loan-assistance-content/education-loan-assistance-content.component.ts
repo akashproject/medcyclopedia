@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BankService } from 'src/app/all-services/bank.service';
 
 @Component({
   selector: 'app-education-loan-assistance-content',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EducationLoanAssistanceContentComponent implements OnInit {
 
-  constructor() { }
+  allBanks : any;
+  constructor(private bakService : BankService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.bakService.getBanks().subscribe(res =>{
+      console.log(res);
+      this.allBanks = res;
+    })
+  }
 
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CoursedetailsService } from 'src/app/all-services/coursedetails.service';
+import { CoursesService } from 'src/app/all-services/courses.service';
 
 @Component({
   selector: 'app-exam-ins-content',
@@ -7,8 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamInsContentComponent implements OnInit {
 
-  constructor() { }
+  allCourses : any;
+  constructor(private courses : CoursesService,
+              private router : Router,
+              private coursedetailsservice : CoursedetailsService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.courses.getCourses().subscribe(res =>{
+      console.log(res);
+      this.allCourses = res;
+      
+    })
+
+    
+  }
+
+  getId(id : string){
+    console.log(id);
+    this.coursedetailsservice.setCourseId(id);
+    this.router.navigate(['/find-institutions-form']);
+    
+  }
 
 }
