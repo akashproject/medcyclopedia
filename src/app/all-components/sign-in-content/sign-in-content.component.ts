@@ -21,10 +21,14 @@ export class SignInContentComponent implements OnInit {
   ngOnInit() {
 
     this.signinForm = this.fb.group({
-      mobile: ['', Validators.required],
+      mobile: ['', [Validators.required, Validators.pattern("[0-9]{10}")]],
       password: ['', Validators.required]
     });
 
+  }
+
+  get errorControl() {
+    return this.signinForm.controls;
   }
 
   signin(){

@@ -11,37 +11,55 @@ import { UserdetailsService } from 'src/app/all-services/userdetails.service';
 })
 export class SignupFirstStepContentComponent implements OnInit {
 
-  signupForm : FormGroup;
+  signupForm: FormGroup;
   name: string;
 
 
   constructor(private fb: FormBuilder,
-              private userDetails : UserdetailsService,
-              private otp : SendotpService,
-              private router:Router) {
+    private userDetails: UserdetailsService,
+    private otp: SendotpService,
+    private router: Router) {
 
 
 
-   }
+  }
 
   ngOnInit() {
 
     this.signupForm = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email : ['', Validators.required],
+      first_name: ['', [Validators.required, Validators.minLength(2)]],
+      last_name: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', Validators.required],
       password: ['', Validators.required],
-      mobile: ['', Validators.required],
+      mobile: ['', [Validators.required]],
       cpassword: ['', Validators.required],
-      referral: ['', Validators.required]
+      referral: ['']
     });
 
-    
+
   }
 
-  sendotp(){
+  get errorControl() {
+    return this.signupForm.controls;
+  }
 
-    this.name = this.signupForm.value.first_name+" "+this.signupForm.value.last_name;
+  password_match = true;
+  confirmPassword() {
+
+    if (this.signupForm.value.password === this.signupForm.value.cpassword) {
+
+      this.password_match=!this.password_match;
+    }
+
+
+
+
+
+  }
+
+  sendotp() {
+
+    this.name = this.signupForm.value.first_name + " " + this.signupForm.value.last_name;
     console.log(this.name);
 
     this.userDetails.setName(this.name);
@@ -52,8 +70,8 @@ export class SignupFirstStepContentComponent implements OnInit {
     // this.otp.sendotp(this.userDetails.getMobile());
 
 
-     this.router.navigate(['/signup-second-step']);
-    
+    this.router.navigate(['/signup-second-step']);
+
 
 
   }

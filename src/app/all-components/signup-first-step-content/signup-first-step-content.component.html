@@ -10,9 +10,25 @@
         <p>First Name</p>
         <input type="text" id="first_name" formControlName="first_name">
       </div>
+      <div *ngIf="errorControl.first_name.touched && errorControl.first_name.invalid">
+        <span style="color: red;" *ngIf="errorControl.first_name.errors.minlength">
+          This First Name is not allowed.
+        </span>
+        <span style="color: red;" *ngIf="errorControl.first_name.errors.required">
+          First name is required.
+        </span>
+      </div>
       <div class="port">
         <p>Last Name</p>
         <input type="text" id="last_name" formControlName="last_name">
+      </div>
+      <div *ngIf="errorControl.last_name.touched && errorControl.last_name.invalid">
+        <span style="color: red;" *ngIf="errorControl.last_name.errors.minlength">
+          This Last Name is not allowed.
+        </span>
+        <span style="color: red;" *ngIf="errorControl.last_name.errors.required">
+          Last name is required.
+        </span>
       </div>
       <div class="port">
         <p>Email</p>
@@ -28,7 +44,12 @@
       </div>
       <div class="port">
         <p>Confirm Password</p>
-        <input type="password" id="cpassword" formControlName="cpassword">
+        <input type="password" id="cpassword" formControlName="cpassword" onformchange="confirmPassword()">
+      </div>
+      <div *ngIf="errorControl.cpassword.touched">
+        <span style=" color: red;" *ngIf="!password_match">
+          Password did not match
+        </span>
       </div>
       <div class="port">
         <p>Referral Code (if any)</p>
