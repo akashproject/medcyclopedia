@@ -11,10 +11,14 @@ import { HeaderComponent } from './all-components/shared/header/header.component
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, BannerComponent, FooterComponent],
   entryComponents: [],
-  imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule, 
+    // IonicStorageModule.forRoot(),
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

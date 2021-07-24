@@ -11,6 +11,8 @@ import { SigninService } from 'src/app/all-services/signin.service';
 export class SignInContentComponent implements OnInit {
 
   signinForm : FormGroup;
+  token_data : any;
+  access_token : string;
 
   constructor(private fb: FormBuilder,
               private router : Router,
@@ -27,9 +29,18 @@ export class SignInContentComponent implements OnInit {
 
   signin(){
 
-    this.signinuser.signinUser(this.signinForm.value.mobile, this.signinForm.value.password);
+    this.signinuser.signinUser(this.signinForm.value.mobile, this.signinForm.value.password).subscribe(res => {
+      console.log(res);
+      this.token_data = res;
+      this.access_token = this.token_data.access_token;
+      console.log(this.access_token);
+      this.signinuser.setToken(this.access_token);
 
-    this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
+    });
+
+    
+    
   }
 
 }

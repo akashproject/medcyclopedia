@@ -30,29 +30,29 @@
           <p>Preferred Date</p>
         </ion-col>
         <ion-col size="8">
-          <ion-datetime value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+          <ion-datetime placeholder="2019-10-01T15:43:40.394Z" display-timezone="utc" [(ngModel)]="date"></ion-datetime>
         </ion-col>
         <ion-col size="4">
           <p>Preferred Timing</p>
         </ion-col>
         <ion-col size="8">
-          <div class="radio_back d-flex">
+          <div class="radio_back d-flex" [(ngModel)]="pref_timing">
             <div class="port d-flex align-center">
-              <input type="radio" name="radio" id="morning">
+              <input type="radio" name="ptiming" id="morning" value="morning">
               <label for="morning" class=" d-flex align-center">
                 <span></span>
                 10am-1pm
               </label>
             </div>
             <div class="port d-flex align-center">
-              <input type="radio" name="radio" id="afternoon">
+              <input type="radio" name="ptiming" id="afternoon" value="afternoon">
               <label for="afternoon" class=" d-flex align-center">
                 <span></span>
                 1pm-5pm
               </label>
             </div>
             <div class="port d-flex align-center">
-              <input type="radio" name="radio" id="evening">
+              <input type="radio" name="ptiming" id="evening" value="evening">
               <label for="evening" class=" d-flex align-center">
                 <span></span>
                 5pm-8pm
@@ -117,7 +117,7 @@
       </ion-row>
       
     </ion-grid>
-    <ion-button color="custom" fill="clear">
+    <ion-button type="button" color="custom" fill="clear" (click)="registerNow()">
       register Now
     </ion-button>
   </div>
