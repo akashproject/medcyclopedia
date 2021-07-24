@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,7 +13,11 @@ export class FindinstitutesService {
   findInstitutes(stateId, courseId, ownershipType){
 
     console.log(stateId+" "+courseId+" "+ownershipType);
-    return this.http.post(`${environment.apiUrl}/institutes`, {state_id:stateId, course_id:courseId, ownership_type:ownershipType}).subscribe(res =>
-      console.log(res));
+    return this.http.post(`${environment.apiUrl}/institutes`, {state_id:stateId, course_id:courseId, ownership_type:ownershipType});
+  }
+
+  findInstituteById(institute_id) : Observable<object>{
+
+    return this.http.get(`${environment.apiUrl}/institute/`+institute_id);
   }
 }

@@ -5,8 +5,8 @@
    <div class="head d-flex">
       <img src="assets/images/il1.png" alt="">
       <h2>
-        Tomo Riba Institute of health & Medical Sciences, Naharlagun<br>
-        <span>Pondicherry Universitys</span>
+        {{ institute_detail.title }}<br>
+        <span>{{ institute_detail.city }}</span>
       </h2>
       <div class="widget d-flex align-items-center justify-content-between">
         <span class="fa fa-thumbs-up"></span>
@@ -16,7 +16,7 @@
   </div>
   <div class="list_details">
     <small>Description</small>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, odit exercitationem, animi porro, laudantium facere corrupti inventore repellendus distinctio beatae mollitia quisquam facilis minima. Aut quod eligendi distinctio facere quia.</p>
+    <p>{{ institute_detail.description}}</p>
   </div>
   <div class="list_details">
     <small>News Articles</small>
@@ -26,11 +26,11 @@
 <div class="institute_details_back second">
   <div class="list_details">
     <small>Contact Numbers</small>
-    <p>1234567890</p>
+    <p>{{ institute_detail.contact_number}}</p>
   </div>
   <div class="list_details">
     <small>Email</small>
-    <p>demo@akash.com</p>
+    <p>{{ institute_detail.email}}</p>
   </div>
   <div class="list_details">
     <small>Reviews</small>
@@ -40,33 +40,18 @@
     <tbody>
       <tr>
         <td>Year of inception</td>
-        <td>2015</td>
+        <td>{{institute_detail.year_of_inception }}</td>
       </tr>
-      <tr>
-        <td>Year of inception</td>
-        <td>2015</td>
-      </tr>
-      <tr>
-        <td>Year of inception</td>
-        <td>2015</td>
-      </tr>
-      <tr>
-        <td>Year of inception</td>
-        <td>2015</td>
-      </tr>
-      <tr>
-        <td>Year of inception</td>
-        <td>2015</td>
-      </tr>
+      
     </tbody>
   </table>
   <div class="list_details">
     <small>Complate Address</small>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, laboriosam. Ipsa nemo dolorum soluta velit iusto? Explicabo, dolorem atque, repellendus sunt repellat eum nesciunt, molestiae unde eos molestias sed animi!</p>
+    <p>{{institute_detail.city}}</p>
   </div>
   <div class="list_details">
     <small>How to reach</small>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, laboriosam. Ipsa nemo dolorum soluta velit iusto? Explicabo, dolorem atque, repellendus sunt repellat eum nesciunt, molestiae unde eos molestias sed animi!</p>
+    <p>{{institute_detail.how_to_reach}}</p>
   </div>
 </div>
 <div class="buttons_back">

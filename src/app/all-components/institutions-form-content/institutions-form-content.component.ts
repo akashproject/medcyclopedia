@@ -34,15 +34,13 @@ export class InstitutionsFormContentComponent implements OnInit {
     this.ownership_type = ownership;
   }
 
-  getStateId(id : string){
-    console.log(id);
-    this.state_id = id;
-  }
 
   findInstitutes(){
 
-    this.findinsttitutesservice.findInstitutes(this.state_id, this.coursedetailsservice.getCourseId(), this.ownership_type);
-    this.router.navigate(['/institute-list']);
+    console.log(this.state_id);
+    console.log(this.ownership_type);
+   // this.findinsttitutesservice.findInstitutes(this.state_id, this.coursedetailsservice.getCourseId(), this.ownership_type);
+    this.router.navigate(['/institute-list'], { state: { state_id:this.state_id , ownership_type:this.ownership_type, course_id: this.coursedetailsservice.getCourseId()} });
   }
 
 }
