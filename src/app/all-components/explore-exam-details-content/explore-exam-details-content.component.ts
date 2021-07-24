@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CoursedetailsService } from 'src/app/all-services/coursedetails.service';
 import { ExamsService } from 'src/app/all-services/exams.service';
 
@@ -10,16 +12,30 @@ import { ExamsService } from 'src/app/all-services/exams.service';
 export class ExploreExamDetailsContentComponent implements OnInit {
 
   allExams : any;
+  course_exam_id : string;
+  exam_id : string;
+  loc : any;
+
 
   constructor(private coursedetailsservice : CoursedetailsService,
-              private examService : ExamsService) { }
+              private location : Location,
+              private examService : ExamsService,
+              private router : Router) { }
 
   ngOnInit() {
-    console.log(this.coursedetailsservice.getCourseId());
-    this.examService.getExamsById(this.coursedetailsservice.getCourseId()).subscribe(res =>{
+
+    this.loc = this.location.getState();
+    this.course_exam_id = this.loc.id;
+    // console.log(this.coursedetailsservice.getCourseId());
+    this.examService.getExamsByCourseId(this.course_exam_id).subscribe(res =>{
       console.log(res);
       this.allExams = res;
     })
+  }
+
+  viewExam(id : string){
+
+    this.router.navigate(['/explore-exam-details-inner'], {state : {exam_id : id}})
   }
 
 }

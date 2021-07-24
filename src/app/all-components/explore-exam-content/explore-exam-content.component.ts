@@ -25,8 +25,8 @@ export class ExploreExamContentComponent implements OnInit {
 
   getId(id : string){
     console.log(id);
-    this.coursedetailsservice.setCourseId(id);
-    this.router.navigate(['/explore-exam-details']);
+    // this.coursedetailsservice.setCourseId(id);
+    this.router.navigate(['/explore-exam-details'],{state :{id : id}});
     
   }
 

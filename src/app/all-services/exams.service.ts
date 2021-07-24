@@ -10,8 +10,13 @@ export class ExamsService {
 
   constructor(private http : HttpClient) { }
 
-  getExamsById(id) : Observable<object>{
+  getExamsByCourseId(id) : Observable<object>{
 
     return this.http.get(`${environment.apiUrl}/exams/`+id);
+  }
+
+  viewExamsById(id) {
+
+    return this.http.get(`${environment.apiUrl}/view-exam/`+id);
   }
 }

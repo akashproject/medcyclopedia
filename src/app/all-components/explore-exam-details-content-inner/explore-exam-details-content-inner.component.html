@@ -1,13 +1,13 @@
 <div class="notification_back">
-  <h2>NEET UG-(MBBS)National Eligiblity-cum-Entrance Test (Under Graduate Graduate) NEET-UG</h2>
+  <h2>{{ exam_detail.title }}</h2>
   <div class="card">
     <div class="section">
       <h6>Description</h6>
-      <p>Admissions to all seats of Undergraduate Medical Courses will be done through NEET</p>
+      <p>{{ exam_detail.description }}</p>
     </div>
     <div class="section">
       <h6>Application Procedure</h6>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores soluta alias fugiat distinctio blanditiis modi optio minus perspiciatis hic nisi, laboriosam delectus natus neque, sequi ad ipsum iusto dolorum eos.<br>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur consequatur placeat soluta laboriosam, qui sapiente saepe illo voluptate quam vitae. Recusandae, fugit perferendis velit deleniti facere vel laboriosam aliquam doloribus.<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente natus tenetur, animi voluptatem saepe amet porro maxime commodi quod reprehenderit ducimus vero officiis excepturi dignissimos molestiae, atque at velit deleniti!</p>
+      <p>{{ exam_detail.application_procedure }}</p>
     </div>
     
     
@@ -15,36 +15,36 @@
   <div class="card">
     <div class="section">
       <h6>Course Category</h6>
-      <p>MBBS</p>
+      <p>{{ exam_detail.course_id}}</p>
     </div>
     <div class="section">
       <h6>Time</h6>
-      <p>04:30P.M</p>
+      <p>{{ exam_detail.time }}</p>
     </div>
     <div class="section">
       <h6>Duration</h6>
-      <p>3 hours</p>
+      <p>{{ exam_detail.duration}}</p>
     </div>
     <div class="section">
       <h6>Fee</h6>
-      <p>Rs. 800*/- (For SC/ST/PWD (PH)/ Transgender candidates)Rs. 1500*/- (For General/OBC candidates)</p>
+      <p>{{ exam_detail.fees }}</p>
     </div>
     
     <div class="section">
       <h6>Cutoff Last Year</h6>
-      <p>146</p>
+      <p>{{ exam_detail.cutofflastyear}}</p>
     </div>
     <div class="section">
       <h6>Imp. Date Current Year</h6>
-      <p>01, Aug 2021</p>
+      <p>{{ exam_detail.important_date_current_year }}</p>
     </div>
     <div class="section">
       <h6>Link</h6>
-      <p>www.nta.ac.in</p>
+      <p>{{ exam_detail.link}}</p>
     </div>
     <div class="section">
-      <h6>Imp. Date Current Year</h6>
-      <p>13 Sep 2020</p>
+      <h6>Imp. Date Last Year</h6>
+      <p>{{ exam_detail.important_date_last_year  }}</p>
     </div>
     
     
