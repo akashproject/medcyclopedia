@@ -7,11 +7,10 @@ import { environment } from 'src/environments/environment';
 })
 export class RegisterService {
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http : HttpClient) { }
   registerUser(name, mobile, password, email){
 
-    return this.http.post(`${environment.apiUrl}/register`, {name : name, mobile : mobile, password : password, email : email}).subscribe((res) =>
+    return this.http.post(`${environment.apiUrl}/signup`, {name:name,mobile:mobile,password: password, email:email}).subscribe((res) =>
     console.log(res));
 
   }
