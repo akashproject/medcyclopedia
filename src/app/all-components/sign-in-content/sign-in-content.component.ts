@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { SigninService } from 'src/app/all-services/signin.service';
 
 @Component({
@@ -10,13 +11,14 @@ import { SigninService } from 'src/app/all-services/signin.service';
 })
 export class SignInContentComponent implements OnInit {
 
-  signinForm : FormGroup;
-  token_data : any;
-  access_token : string;
+  signinForm: FormGroup;
+  token_data: any;
+  access_token: string;
 
   constructor(private fb: FormBuilder,
-              private router : Router,
-              private signinuser : SigninService) { }
+    private router: Router,
+    private signinuser: SigninService,
+    public toastController: ToastController) { }
 
   ngOnInit() {
 
@@ -31,20 +33,51 @@ export class SignInContentComponent implements OnInit {
     return this.signinForm.controls;
   }
 
-  signin(){
+  signin() {
 
     this.signinuser.signinUser(this.signinForm.value.mobile, this.signinForm.value.password).subscribe(res => {
       console.log(res);
       this.token_data = res;
       this.access_token = this.token_data.access_token;
-      console.log(this.access_token);
-      this.signinuser.setToken(this.access_token);
+
+      if (this.access_token === undefined) {
+        this.displayToast();
+      } else {
+        console.log(this.access_token);
+        this.signinuser.setToken(this.access_token);
+      }
 
       this.router.navigate(['/home']);
+    },
+    err => {err=err
+      console.log(err);
+      this.displayToast();
     });
 
-    
-    
+
+
   }
+
+  displayToast() {
+    this.toastController.create({
+     
+      message: 'Mobile or password invalid',
+      position: 'bottom',
+      buttons: [
+        {
+          side: 'end',
+          icon : 'close-outline',
+          role: 'cancel',
+          handler: () => {
+            console.log('');
+          }
+        }
+      ]
+      
+    }).then((toast) => {
+      toast.present();
+    });
+  }
+
 
 }
