@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SigninService } from 'src/app/all-services/signin.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ export class HeaderComponent implements OnInit {
 
   
   menu: boolean = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private signInService : SigninService) { }
   
   menuopen(){
     this.menu = !this.menu;
@@ -20,7 +22,11 @@ export class HeaderComponent implements OnInit {
   }
 
  
+  logout() {
 
+    this.signInService.logout();
+    this.router.navigate(['/signin']);
+  }
   
 
   ngOnInit() {}

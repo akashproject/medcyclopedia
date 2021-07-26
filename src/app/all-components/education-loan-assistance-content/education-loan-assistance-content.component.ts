@@ -9,7 +9,19 @@ import { BankService } from 'src/app/all-services/bank.service';
 export class EducationLoanAssistanceContentComponent implements OnInit {
 
   allBanks : any;
+  bankname : string;
   constructor(private bakService : BankService) { }
+
+  pop:boolean = false;
+
+  popOpen(bank : string){
+    console.log(bank);
+    this.bankname = bank;
+    this.pop = true;
+  }
+  popClose(){
+    this.pop = false;
+  }
 
   ngOnInit() {
 

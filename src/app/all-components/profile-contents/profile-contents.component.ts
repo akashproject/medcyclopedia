@@ -22,6 +22,8 @@ export class ProfileContentsComponent implements OnInit {
   city : string;
   email : string;
   neet: String;
+  user : any;
+  token : string;
 
   constructor(private profileService : ProfileService,
               private signinService : SigninService) { }
@@ -53,7 +55,20 @@ export class ProfileContentsComponent implements OnInit {
     this.notEditMode = !this.notEditMode;
   }
   ngOnInit() {
-    this.profileService.getProfileData(this.signinService.getToken())
+
+    this.user = this.signinService.getCurrentUser();
+    this.user.subscribe(user =>{
+      if (user) {
+        console.log("User s this ")
+        console.log(user);
+        this.token = user.access_token;
+      }
+      else {
+        console.log("empty user", user);
+      }
+    })
+
+    this.profileService.getProfileData(this.token)
     .subscribe(res =>{
       console.log(res);
       
@@ -82,7 +97,7 @@ export class ProfileContentsComponent implements OnInit {
   save(){
 
     this.fullname = this.f_name+" "+this.l_name;
-    this.signinService.updateUser(this.fullname, this.mobile, this.homestate, this.gender, this.cast, this.city, this.physical_status, this.email, this.neet, this.signinService.getToken());
+    this.signinService.updateUser(this.fullname, this.mobile, this.homestate, this.gender, this.cast, this.city, this.physical_status, this.email, this.neet, this.token);
 
     this.editProButton();
     }

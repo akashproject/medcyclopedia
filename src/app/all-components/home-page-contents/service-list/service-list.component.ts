@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SigninService } from 'src/app/all-services/signin.service';
 
 @Component({
   selector: 'app-service-list',
@@ -7,8 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiceListComponent implements OnInit {
 
-  constructor() { }
+  user : any;
 
-  ngOnInit() {}
+  constructor(private signinservice : SigninService) { }
+
+  ngOnInit() {
+
+    this.user = this.signinservice.getCurrentUser();
+    this.user.subscribe(user =>{
+      if (user) {
+        console.log("User s this ")
+        console.log(user);
+      }
+      else {
+        console.log("empty user", user);
+      }
+    })
+  }
+
+
 
 }

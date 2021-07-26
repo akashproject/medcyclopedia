@@ -1,15 +1,36 @@
-<div class="card" *ngFor="let bank of allBanks">
-  <div class="area">
-    <img src="assets/images/{{ bank.bank_name }}.png" alt="">
-    <h2>{{ bank.bank_name}}</h2>
+<div *ngFor="let bank of allBanks">
+  <div class="card">
+    <div class="area">
+      <img src="assets/images/{{ bank.bank_name }}.png" alt="">
+      <h2>{{ bank.bank_name}}</h2>
+    </div>
+    <div class="button">
+      <ion-button color="custom" fill="clear" (click)="popOpen(bank.bank_name)" xx>
+        Details
+      </ion-button>
+    </div>
+
   </div>
-  <div class="button">
-    <ion-button color="custom" fill="clear">
-      Details
-    </ion-button>
+
+  <div class="popup" *ngIf="pop">
+    <div class="back">
+      <ion-icon name="close-outline" (click)="popClose()"></ion-icon>
+      <div class="area">
+        <img src="assets/images/{{bankname}}.png" alt="">
+        <h2 >{{bankname}}</h2>
+      </div>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste veniam, quia excepturi quas, optio voluptas
+        eligendi accusantium</p>
+      <div class="del">
+        <span>Description</span>
+        <a href="">CLICK HERE TO VIEW</a>
+      </div>
+    </div>
+
   </div>
-  
+
 </div>
+
 
 <!-- <div class="card">
   <div class="area">

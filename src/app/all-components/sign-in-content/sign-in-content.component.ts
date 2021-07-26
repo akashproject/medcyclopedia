@@ -38,13 +38,13 @@ export class SignInContentComponent implements OnInit {
     this.signinuser.signinUser(this.signinForm.value.mobile, this.signinForm.value.password).subscribe(res => {
       console.log(res);
       this.token_data = res;
-      this.access_token = this.token_data.access_token;
+      // this.access_token = this.token_data.access_token;
 
-      if (this.access_token === undefined) {
+      if (this.token_data.access_token === undefined) {
         this.displayToast();
       } else {
         console.log(this.access_token);
-        this.signinuser.setToken(this.access_token);
+        // this.signinuser.setToken(this.access_token);
       }
 
       this.router.navigate(['/home']);
