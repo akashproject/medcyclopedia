@@ -31,7 +31,7 @@ export class SignupFirstStepContentComponent implements OnInit {
       last_name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      mobile: ['', [Validators.required]],
+      mobile: ['', [Validators.required, Validators.pattern("[0-9]{10}")]],
       cpassword: ['',[ Validators.required]],
       referral: ['']
     });

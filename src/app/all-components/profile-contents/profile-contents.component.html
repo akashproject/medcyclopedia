@@ -32,10 +32,10 @@
         <p>Home State</p>
         <ion-select placeholder="" [disabled]="notEditMode" [(ngModel)]="homestate">
           <ion-select value="Andaman & Nicobar Island" okText="Okay" cancelText="Dismiss">
-            <ion-select-option value="Andaman & Nicobar Island">Andaman & Nicobar Island</ion-select-option>
-            <ion-select-option value="Assam">Assam</ion-select-option>
+            <ion-select-option *ngFor="let state of all_states" name="homestate" value="{{ state.state_name }}">{{ state.state_name }}</ion-select-option>
+            <!-- <ion-select-option value="Assam">Assam</ion-select-option>
             <ion-select-option value="Arunachal Pradesh">Arunachal Pradesh</ion-select-option>
-            <ion-select-option value="Bihar">Bihar</ion-select-option>
+            <ion-select-option value="Bihar">Bihar</ion-select-option> -->
           </ion-select>
         </ion-select>
       </div>

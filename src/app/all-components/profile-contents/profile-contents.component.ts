@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/all-services/profile.service';
 import { SigninService } from 'src/app/all-services/signin.service';
+import { StatesService } from 'src/app/all-services/states.service';
 
 @Component({
   selector: 'app-profile-contents',
@@ -24,9 +25,11 @@ export class ProfileContentsComponent implements OnInit {
   neet: String;
   user : any;
   token : string;
+  all_states;
 
   constructor(private profileService : ProfileService,
-              private signinService : SigninService) { }
+              private signinService : SigninService,
+              private stateservice : StatesService) { }
 
   edit_pro: boolean = true;
   save_pro: boolean = false;
@@ -68,6 +71,8 @@ export class ProfileContentsComponent implements OnInit {
       }
     })
 
+    console.log("The token in profile is " +this.token);
+
     this.profileService.getProfileData(this.token)
     .subscribe(res =>{
       console.log(res);
@@ -89,12 +94,18 @@ export class ProfileContentsComponent implements OnInit {
       this.neet = this.userdata.score;
     });
     
+    this.stateservice.getStates().subscribe((data) => {
+      console.log(data);
+      this.all_states = data;
+    })
 
 
 
   }
 
   save(){
+
+    console.log(this.homestate);
 
     this.fullname = this.f_name+" "+this.l_name;
     this.signinService.updateUser(this.fullname, this.mobile, this.homestate, this.gender, this.cast, this.city, this.physical_status, this.email, this.neet, this.token);

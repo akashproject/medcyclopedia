@@ -49,6 +49,9 @@
         <span style="color: red;" *ngIf="errorControl.mobile.errors.required">
           Mobile is required.
         </span>
+        <span style="color: red;" *ngIf="errorControl.mobile.errors.pattern">
+          Mobile is not in format.
+        </span>
       </div>
       <div class="port">
         <p>Create Password</p>
