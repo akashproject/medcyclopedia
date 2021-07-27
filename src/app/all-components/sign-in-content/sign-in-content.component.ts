@@ -33,12 +33,12 @@ export class SignInContentComponent implements OnInit {
     return this.signinForm.controls;
   }
 
-  signin() {
+  async signin() {
 
     this.signinuser.signinUser(this.signinForm.value.mobile, this.signinForm.value.password).subscribe(res => {
       console.log(res);
       this.token_data = res;
-      // this.access_token = this.token_data.access_token;
+      this.access_token = this.token_data.access_token;
 
       if (this.token_data.access_token === undefined) {
         this.displayToast();

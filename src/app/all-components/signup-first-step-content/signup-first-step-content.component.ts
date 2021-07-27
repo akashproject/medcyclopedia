@@ -32,7 +32,7 @@ export class SignupFirstStepContentComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       mobile: ['', [Validators.required]],
-      cpassword: ['', Validators.required],
+      cpassword: ['',[ Validators.required]],
       referral: ['']
     });
 
@@ -43,13 +43,15 @@ export class SignupFirstStepContentComponent implements OnInit {
     return this.signupForm.controls;
   }
 
-  password_match = true;
+  match = false;
   confirmPassword() {
 
     if (this.signupForm.value.password === this.signupForm.value.cpassword) {
 
-      this.password_match=!this.password_match;
+      this.match = true;
+      return false;
     }
+    return true;
 
 
 

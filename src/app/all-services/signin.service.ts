@@ -62,6 +62,18 @@ export class SigninService {
     // );
   }
 
+  registerUser(name, mobile, password, email) {
+
+    return this.http.post(`${environment.apiUrl}/signup`, { name: name, mobile: mobile, password: password, email: email }).pipe(
+      switchMap(data => {
+        return from(this.storage.set(JWT_KEY, data));
+      }),
+      tap(data => {
+        this.user.next(data);
+      })
+    );
+  }
+
   getCurrentUser() {
     return this.user.asObservable();
   }

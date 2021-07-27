@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { RegisterService } from 'src/app/all-services/register.service';
 import { SendotpService } from 'src/app/all-services/sendotp.service';
+import { SigninService } from 'src/app/all-services/signin.service';
 import { UserdetailsService } from 'src/app/all-services/userdetails.service';
 
 @Component({
@@ -12,19 +14,30 @@ import { UserdetailsService } from 'src/app/all-services/userdetails.service';
 })
 export class SignupSecondPageContentComponent implements OnInit {
 
-  otpForm : FormGroup;
+  otpForm: FormGroup;
+  token_data: any;
+  error: any;
+  otp_object : any;
+  otp_received : string;
+  full_otp : string;
 
-  constructor(private userdetails : UserdetailsService,
-              private otp: SendotpService,
-              private registerUser : RegisterService,
-              private fb: FormBuilder,
-              private router : Router) { }
+  constructor(private userdetails: UserdetailsService,
+    private otp: SendotpService,
+    private signinservice: SigninService,
+    private fb: FormBuilder,
+    private router: Router,
+    public toastController: ToastController) { }
 
   ngOnInit() {
 
     console.log(this.userdetails.getMobile());
 
-    this.otp.sendotp(this.userdetails.getMobile());
+    this.otp.sendotp(this.userdetails.getMobile()).subscribe((res) =>{
+      console.log(res);
+      this.otp_object = res;
+      this.otp_received = this.otp_object.otp_value;
+      console.log(this.otp_received);
+    });
 
     this.otpForm = this.fb.group({
       mobile: ['', Validators.required],
@@ -37,17 +50,121 @@ export class SignupSecondPageContentComponent implements OnInit {
     });
 
     // this.otpForm.forEach((x) => {
-      this.otpForm.patchValue({ mobile: this.userdetails.getMobile() })
+    this.otpForm.patchValue({ mobile: this.userdetails.getMobile() })
     // })
   }
 
-  register(){
+  register() {
 
-    console.log(this.userdetails.getName()+ " "+this.userdetails.getMobile()+" "+this.userdetails.getPassword()+" "+this.userdetails.getEmail());
+    this.full_otp = this.otpForm.value.place1+this.otpForm.value.place2+this.otpForm.value.place3+this.otpForm.value.place4+this.otpForm.value.place5+this.otpForm.value.place6;
+    console.log(typeof(Number.parseInt(this.full_otp)) +" "+this.full_otp);
+    console.log(typeof(this.otp_received) +" "+this.otp_received);
 
-    this.registerUser.registerUser(this.userdetails.getName(), this.userdetails.getMobile(), this.userdetails.getPassword(), this.userdetails.getEmail());
+    if(!( this.otp_received == this.full_otp)){
 
-    this.router.navigate(['/home']);
+      this.displayToast2();
+    }
+    else {
+    console.log(this.userdetails.getName() + " " + this.userdetails.getMobile() + " " + this.userdetails.getPassword() + " " + this.userdetails.getEmail());
+
+    this.signinservice.registerUser(this.userdetails.getName(), this.userdetails.getMobile(), this.userdetails.getPassword(), this.userdetails.getEmail()).subscribe(res => {
+      console.log(res);
+      this.token_data = res;
+      // this.access_token = this.token_data.access_token;
+
+      // if (this.token_data.access_token === undefined) {
+      //   this.displayToast();
+      // } else {
+      //   console.log(this.access_token);
+      //   // this.signinuser.setToken(this.access_token);
+      // }
+
+      this.router.navigate(['/home']);
+    },
+      err => {
+        err = err
+        console.log(err);
+        this.error = err;
+        console.log(this.error.error);
+        console.log(this.error.error.error);
+
+        var abc: string = this.error.error.error;
+        if (abc.startsWith("Duplicate entry")) {
+          this.displayToast1();
+
+        }
+        else {
+          this.displayToast();
+        }
+
+      });
+    }
+
+  }
+
+  displayToast() {
+    this.toastController.create({
+
+      message: 'Registration is not done.',
+      position: 'bottom',
+      buttons: [
+        {
+          side: 'end',
+          icon: 'close-outline',
+          role: 'cancel',
+          handler: () => {
+            console.log('');
+            
+          }
+        }
+      ]
+
+    }).then((toast) => {
+      toast.present();
+    });
+  }
+
+  displayToast1() {
+    this.toastController.create({
+
+      message: 'This email is already been used',
+      position: 'bottom',
+      buttons: [
+        {
+          side: 'end',
+          icon: 'close-outline',
+          role: 'cancel',
+          handler: () => {
+            console.log('');
+            this.router.navigate(['/signup-first-step']);
+          }
+        }
+      ]
+
+    }).then((toast) => {
+      toast.present();
+    });
+  }
+
+  displayToast2() {
+    this.toastController.create({
+
+      message: 'The OTP did not match',
+      position: 'bottom',
+      buttons: [
+        {
+          side: 'end',
+          icon: 'close-outline',
+          role: 'cancel',
+          handler: () => {
+            console.log('');
+          }
+        }
+      ]
+
+    }).then((toast) => {
+      toast.present();
+    });
   }
 
 }

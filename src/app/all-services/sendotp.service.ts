@@ -13,7 +13,6 @@ export class SendotpService {
   sendotp(mobile){
 
     console.log(mobile);
-    return this.http.post(`${environment.apiUrl}/send-otp`, {mobile : mobile}).subscribe((res) =>
-    console.log(res));
+    return this.http.post(`${environment.apiUrl}/send-otp`, {mobile : mobile});
   }
 }

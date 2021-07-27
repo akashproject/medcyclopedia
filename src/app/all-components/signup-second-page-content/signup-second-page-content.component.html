@@ -8,7 +8,7 @@
     <form [formGroup]="otpForm" (ngSubmit)="register()">
       <div class="port">
         <p>Mobile</p>
-        <input type="text" formControlName="mobile" id="mobile">
+        <input type="text" formControlName="mobile" id="mobile" readonly>
       </div>
       <div class="port">
         <p>Mobile OTP</p>
@@ -23,7 +23,7 @@
         
       </div>
       
-      <ion-button type="submit" color="custom" fill="clear">
+      <ion-button type="submit" color="custom" fill="clear" [disabled]="!otpForm.valid">
         Submit
       </ion-button>
     </form>
