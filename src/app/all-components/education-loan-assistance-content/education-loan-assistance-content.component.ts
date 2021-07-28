@@ -9,14 +9,14 @@ import { BankService } from 'src/app/all-services/bank.service';
 export class EducationLoanAssistanceContentComponent implements OnInit {
 
   allBanks : any;
-  bankname : string;
+  bankdetails : string;
   constructor(private bakService : BankService) { }
 
   pop:boolean = false;
 
-  popOpen(bank : string){
+  popOpen(bank : any){
     console.log(bank);
-    this.bankname = bank;
+    this.bankdetails = bank;
     this.pop = true;
   }
   popClose(){
@@ -30,5 +30,7 @@ export class EducationLoanAssistanceContentComponent implements OnInit {
       this.allBanks = res;
     })
   }
+
+
 
 }

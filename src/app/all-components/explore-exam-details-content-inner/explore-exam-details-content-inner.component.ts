@@ -11,7 +11,7 @@ export class ExploreExamDetailsContentInnerComponent implements OnInit {
 
   loc : any;
   exam_id : string;
-  exam_detail : any;
+  exam_detail : any = [];
 
   constructor(private location : Location,
               private examService : ExamsService) { }

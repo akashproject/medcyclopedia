@@ -11,7 +11,7 @@ import { ExamsService } from 'src/app/all-services/exams.service';
 })
 export class ExploreExamDetailsContentComponent implements OnInit {
 
-  allExams : any;
+  allExams : any = [];
   course_exam_id : string;
   exam_id : string;
   loc : any;

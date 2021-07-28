@@ -1,11 +1,13 @@
 <div class="abroad_back">
   <h2>Popular countries to study MBBS Abroad</h2>
-  <ul class="service_list_back" *ngFor="let countries of allCountries">
-    <li class="d-flex align-center" [routerLink]="['/country-info']">
-      <img src="assets/images/{{ countries.name }}.png" alt="">
-      {{ countries.name }}
-    </li>
-    <!-- <li class="d-flex align-center" [routerLink]="['/country-info']">
+
+  <div (click)="getCountry($event.target.value)">
+    <ul class="service_list_back" *ngFor="let countries of allCountries">
+      <li class="d-flex align-center"  [value]="countries.id" >
+        <img src="assets/images/{{ countries.name }}.png" alt="">
+        {{ countries.name }}
+      </li>
+      <!-- <li class="d-flex align-center" [routerLink]="['/country-info']">
       <img src="assets/images/cat2.png" alt="">
       bangladesh
     </li>
@@ -41,7 +43,8 @@
       <img src="assets/images/cat10.png" alt="">
       georgia
     </li> -->
-  </ul>
+    </ul>
+  </div>
 </div>
 
 <div class="details d-flex align-center flex-column">

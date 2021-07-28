@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CountriesService } from 'src/app/all-services/countries.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { CountriesService } from 'src/app/all-services/countries.service';
 })
 export class MbbsAbroadContentComponent implements OnInit {
 
-  allCountries : any;
+  allCountries : any = [];
 
-  constructor(private countriesService : CountriesService) { }
+  constructor(private countriesService : CountriesService,
+              private router : Router) { }
 
   ngOnInit() {
 
@@ -18,6 +20,12 @@ export class MbbsAbroadContentComponent implements OnInit {
       console.log(res);
       this.allCountries = res;
     })
+  }
+
+  getCountry(countryid :any){
+    console.log(countryid);
+    // [routerLink]="['/country-info']"
+    this.router.navigate(['/country-info'], {state:{ country_id : countryid}});
   }
 
 }

@@ -5,7 +5,7 @@
       <h2>{{ bank.bank_name}}</h2>
     </div>
     <div class="button">
-      <ion-button color="custom" fill="clear" (click)="popOpen(bank.bank_name)" xx>
+      <ion-button color="custom" fill="clear" (click)="popOpen(bank)" xx>
         Details
       </ion-button>
     </div>
@@ -16,14 +16,20 @@
     <div class="back">
       <ion-icon name="close-outline" (click)="popClose()"></ion-icon>
       <div class="area">
-        <img src="assets/images/{{bankname}}.png" alt="">
-        <h2 >{{bankname}}</h2>
+        <img src="assets/images/{{bankdetails.bank_name}}.png" alt="">
+        <h2 >{{ bankdetails.bank_name }}</h2>
       </div>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste veniam, quia excepturi quas, optio voluptas
-        eligendi accusantium</p>
+      <!-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste veniam, quia excepturi quas, optio voluptas
+        eligendi accusantium</p> -->
+      <h3>Name :</h3>
+      <h4>{{ bankdetails.contact_name }}</h4>
+      <br>
+      <h3>Contact :</h3>
+      <h4>{{ bankdetails.contact_number}}</h4>
       <div class="del">
         <span>Description</span>
-        <a href="">CLICK HERE TO VIEW</a>
+        <!-- <a href="">CLICK HERE TO VIEW</a> -->
+        <p>{{ bankdetails.description }}</p>
       </div>
     </div>
 

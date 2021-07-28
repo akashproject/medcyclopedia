@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { CountriesService } from 'src/app/all-services/countries.service';
+import { Location } from '@angular/common';
+// import { type } from 'os';
+
+
 
 @Component({
   selector: 'app-country-info-content',
@@ -7,8 +12,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountryInfoContentComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {}
+  allCountry : any = [];
+  loc : any = [];
+  country : any = [];
+  country_id : string;
+  constructor(private countryService : CountriesService,
+              private location : Location) { }
+
+  ngOnInit() {
+
+    this.loc = this.location.getState();
+
+    this.country_id = this.loc.country_id;
+    console.log("The country id in country info is "+this.country_id);
+    this.countryService.getCountries().subscribe((data) => {
+      console.log(data);
+      this.allCountry = data;
+      // console.log(typeof(this.allCountry.id)+" "+typeof(this.country_id));
+      this.country = this.allCountry.find(x => x.id === this.country_id);
+      console.log(this.country);
+    });
+
+    
+  }
 
 }

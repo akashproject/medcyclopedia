@@ -12,7 +12,7 @@ export class InsListDetailsContentComponent implements OnInit {
 
   institute_id : string;
   loc : any;
-  institute_detail : any;
+  institute_detail : any = [];
 
   constructor(private location:Location,
               private findinstitute : FindinstitutesService) { }
