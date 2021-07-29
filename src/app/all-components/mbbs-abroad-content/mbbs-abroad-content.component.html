@@ -3,7 +3,7 @@
 
   <div (click)="getCountry($event.target.value)">
     <ul class="service_list_back" *ngFor="let countries of allCountries">
-      <li class="d-flex align-center"  [value]="countries.id" >
+      <li class="d-flex align-center" [value]="countries.id">
         <img src="assets/images/{{ countries.name }}.png" alt="">
         {{ countries.name }}
       </li>

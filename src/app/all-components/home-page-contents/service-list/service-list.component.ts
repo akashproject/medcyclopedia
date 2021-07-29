@@ -14,16 +14,6 @@ export class ServiceListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.user = this.signinservice.getCurrentUser();
-    this.user.subscribe(user =>{
-      if (user) {
-        console.log("User s this ")
-        console.log(user);
-      }
-      else {
-        console.log("empty user", user);
-      }
-    })
   }
 
 

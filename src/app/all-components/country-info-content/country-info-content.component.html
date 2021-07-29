@@ -7,7 +7,7 @@
           Name
         </ion-col>
         <ion-col size="6" class="title">
-          {{ country.name }}
+          {{ country?.name }}
         </ion-col>
       </ion-row>
       <ion-row>
@@ -15,7 +15,7 @@
           Code
         </ion-col>
         <ion-col size="6" class="title">
-          {{ country.code }}
+          {{ country?.code }}
         </ion-col>
       </ion-row>
       <ion-row>
@@ -23,17 +23,17 @@
           Country
         </ion-col>
         <ion-col size="6" class="title">
-          {{ country.currency }}
+          {{ country?.currency }}
         </ion-col>
       </ion-row>
       </ion-grid>
     <div class="section">
       <h6>Medical Education</h6>
-      <p>{{ country.medicaleducation }}</p>
+      <p>{{ country?.medicaleducation }}</p>
     </div>
     <div class="section">
       <h6>About</h6>
-      <p>{{ country.about }}</p>
+      <p>{{ country?.about }}</p>
     </div>
     
     

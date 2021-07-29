@@ -11,7 +11,7 @@ export class ProfileService {
   constructor(private http:HttpClient) { }
 
   
-  getProfileData(access_token) : Observable<object>{
+  getProfileData(access_token) {
 
     console.log(access_token);
     // var headers = new Headers();

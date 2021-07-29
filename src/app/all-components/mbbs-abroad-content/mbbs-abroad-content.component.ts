@@ -22,7 +22,7 @@ export class MbbsAbroadContentComponent implements OnInit {
     })
   }
 
-  getCountry(countryid :any){
+  getCountry(countryid :string){
     console.log(countryid);
     // [routerLink]="['/country-info']"
     this.router.navigate(['/country-info'], {state:{ country_id : countryid}});

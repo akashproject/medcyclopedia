@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/all-services/profile.service';
 import { SigninService } from 'src/app/all-services/signin.service';
 import { StatesService } from 'src/app/all-services/states.service';
+import { CameraPermissionType, Camera, CameraResultType, CameraSource, ImageOptions } from '@capacitor/camera';
+// import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+import { ActionSheetController } from '@ionic/angular';
+import { UtilService } from 'src/app/services/util.service';
+import { HTTP } from "@ionic-native/http/ngx/index";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
+// const { Camera } = Plugins;
 
 @Component({
   selector: 'app-profile-contents',
@@ -11,30 +20,40 @@ import { StatesService } from 'src/app/all-services/states.service';
 export class ProfileContentsComponent implements OnInit {
 
 
-  userdata : any;
-  fullname:string;
-  f_name : string;
-  l_name : string;
-  mobile : string;
-  homestate : string;
-  gender : string;
-  physical_status : string;
-  cast : string;
-  city : string;
-  email : string;
+  userdata: any = [];
+  fullname: string;
+  f_name: string;
+  l_name: string;
+  mobile: string;
+  homestate: string;
+  gender: string;
+  physical_status: string;
+  cast: string;
+  city: string;
+  email: string;
   neet: String;
-  user : any;
-  token : string;
-  all_states;
+  user: any;
+  token: string;
+  all_states : any = [];
 
-  constructor(private profileService : ProfileService,
-              private signinService : SigninService,
-              private stateservice : StatesService) { }
+  // Camera
+  backgroundImage = "";
+  uploadStatus = false;
+  cover: any = "";
+
+  constructor(private profileService: ProfileService,
+    private signinService: SigninService,
+    private stateservice: StatesService,
+    // private camera: CameraPlugin,
+    private actionSheetController: ActionSheetController,
+    public util: UtilService,
+    private http: HttpClient,
+    private nativeHttp: HTTP) { }
 
   edit_pro: boolean = true;
   save_pro: boolean = false;
 
-  editProButton(){
+  editProButton() {
 
 
     this.onTogglenotEditMode();
@@ -44,11 +63,11 @@ export class ProfileContentsComponent implements OnInit {
     this.edit_pro = !this.edit_pro;
     this.save_pro = !this.save_pro;
 
-    console.log(this.f_name+" "+this.l_name+" "+this.mobile+" "+this.homestate+" "+this.gender+" "+this.cast+" "+this.city+" "+this.email+" "+this.neet);
-    
+    console.log(this.f_name + " " + this.l_name + " " + this.mobile + " " + this.homestate + " " + this.gender + " " + this.cast + " " + this.city + " " + this.email + " " + this.neet);
+
   }
 
-  cancleProButton(){
+  cancleProButton() {
     this.edit_pro = true;
     this.save_pro = false;
   }
@@ -60,7 +79,7 @@ export class ProfileContentsComponent implements OnInit {
   ngOnInit() {
 
     this.user = this.signinService.getCurrentUser();
-    this.user.subscribe(user =>{
+    this.user.subscribe(user => {
       if (user) {
         console.log("User s this ")
         console.log(user);
@@ -71,29 +90,29 @@ export class ProfileContentsComponent implements OnInit {
       }
     })
 
-    console.log("The token in profile is " +this.token);
+    console.log("The token in profile is " + this.token);
 
     this.profileService.getProfileData(this.token)
-    .subscribe(res =>{
-      console.log(res);
-      
-      this.userdata = res;
-      console.log(this.userdata.name);
-      this.fullname = this.userdata.name;
-      this.f_name = this.fullname.split(" ")[0];
+      .subscribe(res => {
+        console.log(res);
 
-      console.log(this.f_name);
-      this.l_name = this.fullname.split(" ")[1];
-      this.mobile = this.userdata.mobile;
-      this.homestate = this.userdata.homestate;
-      this.gender = this.userdata.gender;
-      this.cast = this.userdata.cast;
-      this.city = this.userdata.city;
-      this.physical_status = this.userdata.physical_status;
-      this.email = this.userdata.email;
-      this.neet = this.userdata.score;
-    });
-    
+        this.userdata = res;
+        console.log(this.userdata.name);
+        this.fullname = this.userdata.name;
+        this.f_name = this.fullname.split(" ")[0];
+
+        console.log(this.f_name);
+        this.l_name = this.fullname.split(" ")[1];
+        this.mobile = this.userdata.mobile;
+        this.homestate = this.userdata.homestate;
+        this.gender = this.userdata.gender;
+        this.cast = this.userdata.cast;
+        this.city = this.userdata.city;
+        this.physical_status = this.userdata.physical_status;
+        this.email = this.userdata.email;
+        this.neet = this.userdata.score;
+      });
+
     this.stateservice.getStates().subscribe((data) => {
       console.log(data);
       this.all_states = data;
@@ -103,14 +122,168 @@ export class ProfileContentsComponent implements OnInit {
 
   }
 
-  save(){
+  save() {
 
     console.log(this.homestate);
 
-    this.fullname = this.f_name+" "+this.l_name;
+    this.fullname = this.f_name + " " + this.l_name;
     this.signinService.updateUser(this.fullname, this.mobile, this.homestate, this.gender, this.cast, this.city, this.physical_status, this.email, this.neet, this.token);
 
     this.editProButton();
+  }
+
+  // ============== Camera ==============
+
+  async openLink() {
+    const actionSheet = await this.actionSheetController.create({
+      header: this.util.getString("Choose from"),
+      buttons: [
+        {
+          text: this.util.getString("Camera"),
+          icon: "camera",
+          handler: () => {
+            console.log("camera clicked");
+            this.upload("camera");
+          },
+        },
+        {
+          text: this.util.getString("Gallery"),
+          icon: "images",
+          handler: () => {
+            console.log("gallery clicked");
+            this.upload("gallery");
+          },
+        },
+        {
+          text: this.util.getString("Cancel"),
+          icon: "close",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel clicked");
+          },
+        },
+      ],
+    });
+
+    await actionSheet.present();
+  }
+
+  upload(type) {
+
+    try {
+      const options: ImageOptions = {
+        quality: 100,
+        height: 400,
+        width: 400,
+        resultType: CameraResultType.DataUrl,
+        // encodingType: this.camera.EncodingType.JPEG,
+        // mediaType: this.camera.MediaType.PICTURE,
+        correctOrientation: true,
+        source:
+          type === "camera"
+            ? CameraSource.Camera
+            : CameraSource.Photos,
+      };
+      Camera.getPhoto(options).then((url) => {
+        console.log("url->", url);
+        this.util.show("uploading");
+        const alpha = {
+          mobile: localStorage.getItem("mobile"),
+          img: url,
+          type: "jpg",
+        };
+        console.log("parma==>", alpha);
+        this.backgroundImage = "data:image/png;base64," + url;
+        this.uploadStatus = true;
+        this.nativePost("users/upload_file_order", alpha)
+          .then(
+            (data) => {
+              this.util.hide();
+              // Save to Prescripe
+              const info = JSON.parse(data.data);
+              this.cover = info.data;
+              const param = {
+                name:
+                  localStorage.getItem("first_name") +
+                  " " +
+                  localStorage.getItem("last_name"),
+                phone: localStorage.getItem("mobile"),
+                email: "Nil",
+                image: this.cover,
+                message: "NIL",
+                status: 1,
+                date: new Date().toISOString(),
+              };
+              this.util.show(this.util.getString("updating..."));
+              this.post("prescription/save", param).subscribe(
+                (update: any) => {
+                  this.util.hide();
+                  console.log(update);
+                },
+                (error) => {
+                  this.util.hide();
+                  console.log(error);
+                  this.util.errorToast(
+                    this.util.getString("Something went wrong")
+                  );
+                }
+              );
+            },
+            (error) => {
+              console.log(error);
+              this.util.hide();
+              this.util.errorToast(this.util.getString("Something went wrong"));
+            }
+          )
+          .catch((error) => {
+            console.log(error);
+            this.util.hide();
+            this.util.errorToast(this.util.getString("Something went wrong"));
+          });
+      });
+    } catch (error) {
+      console.log("error", error);
+      this.util.errorToast(this.util.getString("Something went wrong"));
     }
+  }
+
+  nativePost(url, post) {
+    const header = {
+      headers: new HttpHeaders()
+        .set("Content-Type", "application/x-www-form-urlencoded")
+        .set("Basic", "123456"),
+    };
+    console.log("https://api.circlepoint.in/index.php/" + url, post);
+    return this.nativeHttp.post("https://api.circlepoint.in/index.php/" + url, post, header);
+  }
+
+  post(url, body) {
+    const header = {
+      headers: new HttpHeaders()
+        .set("Content-Type", "application/x-www-form-urlencoded")
+        .set("Basic", "123456"),
+    };
+    const param = this.JSON_to_URLEncoded(body);
+    console.log(param);
+    return this.http.post("https://api.circlepoint.in/index.php/" + url, param, header);
+  }
+
+  JSON_to_URLEncoded(element, key?, list?) {
+    let new_list = list || [];
+    if (typeof element === "object") {
+      for (let idx in element) {
+        this.JSON_to_URLEncoded(
+          element[idx],
+          key ? key + "[" + idx + "]" : idx,
+          new_list
+        );
+      }
+    } else {
+      new_list.push(key + "=" + encodeURIComponent(element));
+    }
+    return new_list.join("&");
+  }
+
+
 
 }
