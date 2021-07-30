@@ -185,7 +185,7 @@ export class ProfileContentsComponent implements OnInit {
             : CameraSource.Photos,
       };
       Camera.getPhoto(options).then((url) => {
-        console.log("url->", url);
+        
         this.util.show("uploading");
         const alpha = {
           mobile: localStorage.getItem("mobile"),
@@ -195,51 +195,11 @@ export class ProfileContentsComponent implements OnInit {
         console.log("parma==>", alpha);
         this.backgroundImage = "data:image/png;base64," + url;
         this.uploadStatus = true;
-        this.nativePost("users/upload_file_order", alpha)
-          .then(
-            (data) => {
-              this.util.hide();
-              // Save to Prescripe
-              const info = JSON.parse(data.data);
-              this.cover = info.data;
-              const param = {
-                name:
-                  localStorage.getItem("first_name") +
-                  " " +
-                  localStorage.getItem("last_name"),
-                phone: localStorage.getItem("mobile"),
-                email: "Nil",
-                image: this.cover,
-                message: "NIL",
-                status: 1,
-                date: new Date().toISOString(),
-              };
-              this.util.show(this.util.getString("updating..."));
-              this.post("prescription/save", param).subscribe(
-                (update: any) => {
-                  this.util.hide();
-                  console.log(update);
-                },
-                (error) => {
-                  this.util.hide();
-                  console.log(error);
-                  this.util.errorToast(
-                    this.util.getString("Something went wrong")
-                  );
-                }
-              );
-            },
-            (error) => {
-              console.log(error);
-              this.util.hide();
-              this.util.errorToast(this.util.getString("Something went wrong"));
-            }
-          )
-          .catch((error) => {
-            console.log(error);
-            this.util.hide();
-            this.util.errorToast(this.util.getString("Something went wrong"));
-          });
+        
+        console.log(this.backgroundImage);
+
+        this.util.hide();
+        
       });
     } catch (error) {
       console.log("error", error);
