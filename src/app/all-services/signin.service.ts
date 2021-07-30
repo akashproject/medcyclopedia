@@ -86,8 +86,7 @@ export class SigninService {
     })
 
     return this.http.put(`${environment.apiUrl}/updateprofile`,
-      {name: name, mobile:mobile, homestate:homestate, gender : gender, cast: cast, city:city, physical_status:physical_status, email:email, score:neet}, {headers: headers}).subscribe(res=>
-        console.log(res));
+      {name: name, mobile:mobile, homestate:homestate, gender : gender, cast: cast, city:city, physical_status:physical_status, email:email, score:neet}, {headers: headers});
 
   }
 

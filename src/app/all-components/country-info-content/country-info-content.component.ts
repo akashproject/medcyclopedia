@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesService } from 'src/app/all-services/countries.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 // import { type } from 'os';
 
 
@@ -18,7 +19,8 @@ export class CountryInfoContentComponent implements OnInit {
   country : any = [];
   country_id : string;
   constructor(private countryService : CountriesService,
-              private location : Location) { }
+              private location : Location,
+              private router : Router) { }
 
   ngOnInit() {
 
@@ -33,6 +35,14 @@ export class CountryInfoContentComponent implements OnInit {
       this.country = this.allCountry.find(x => x.id === this.country_id);
       console.log(this.country);
     });
+
+    
+  }
+
+  continue(id){
+    console.log("Continuing the country with id "+id);
+
+    this.router.navigate(['/institute-list'], { state: { country_id:id} });
 
     
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScholarshipService } from 'src/app/all-services/scholarship.service';
 
 @Component({
   selector: 'app-scholarships-content',
@@ -9,7 +10,10 @@ export class ScholarshipsContentComponent implements OnInit {
 
   pop:boolean = false;
 
-  constructor() { }
+  scholarships : any = [];
+  country_id : string;
+
+  constructor(private scholarshipservice : ScholarshipService) { }
 
   popOpen(){
     this.pop = true;
@@ -18,6 +22,14 @@ export class ScholarshipsContentComponent implements OnInit {
     this.pop = false;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.scholarshipservice.getShcolarships().subscribe(res => {
+      console.log(res);
+
+      this.scholarships = res;
+
+    });
+  }
 
 }

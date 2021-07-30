@@ -13,6 +13,7 @@ export class InstituteListContentComponent implements OnInit {
   state_id: string;
   course_id : string;
   ownership_type : string;
+  country_id : string;
   loc : any;
   all_institutes : any;
   // institute_id: string;
@@ -25,14 +26,32 @@ export class InstituteListContentComponent implements OnInit {
 
     this.loc = this.location.getState();
     console.log(this.location.getState());
-    this.state_id = this.loc.state_id;
-    this.course_id = this.loc.course_id;
-    this.ownership_type=this.loc.ownership_type;
+
+    this.country_id = this.loc.country_id;
+
+    if(this.country_id === undefined){
+     
+      this.state_id = this.loc.state_id;
+      this.course_id = this.loc.course_id;
+      this.ownership_type=this.loc.ownership_type;
+      
+      this.findinsttitutesservice.findInstitutes(this.state_id, this.course_id, this.ownership_type).subscribe((res) =>{
+        console.log(res);
+        this.all_institutes = res;
+      })
+    }
+    else {
+
+      
+
+      this.findinsttitutesservice.findInstituteCountryWise(this.country_id).subscribe(res =>{
+        console.log(res);
+        this.all_institutes = res;
+      })
+
+    }
+
     
-    this.findinsttitutesservice.findInstitutes(this.state_id, this.course_id, this.ownership_type).subscribe((res) =>{
-      console.log(res);
-      this.all_institutes = res;
-    })
 
 
   }
