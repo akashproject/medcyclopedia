@@ -136,10 +136,11 @@ export class ProfileContentsComponent implements OnInit {
     console.log(this.homestate);
 
     this.fullname = this.f_name + " " + this.l_name;
+    this.loaderservice.presentLoading();
     this.signinService.updateUser(this.fullname, this.mobile, this.homestate, this.gender, this.cast, this.city, this.physical_status, this.email, this.neet, this.token).subscribe(res => {
       console.log(res);
 
-
+      this.loaderservice.hideLoading();
       this.displayToast();
       this.editProButton();
 
