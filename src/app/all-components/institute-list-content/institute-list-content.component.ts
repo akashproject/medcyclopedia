@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FindinstitutesService } from 'src/app/all-services/findinstitutes.service';
 import { Router } from '@angular/router';
+import { LoaderService } from 'src/app/all-services/loader.service';
 
 @Component({
   selector: 'app-institute-list-content',
@@ -20,12 +21,16 @@ export class InstituteListContentComponent implements OnInit {
 
   constructor(private location:Location,
               private findinsttitutesservice: FindinstitutesService,
+              private loaderservice : LoaderService,
               private router : Router) { }
 
   ngOnInit() {
 
+    
     this.loc = this.location.getState();
     console.log(this.location.getState());
+
+    this.loaderservice.presentLoading();
 
     this.country_id = this.loc.country_id;
 
@@ -37,6 +42,8 @@ export class InstituteListContentComponent implements OnInit {
       
       this.findinsttitutesservice.findInstitutes(this.state_id, this.course_id, this.ownership_type).subscribe((res) =>{
         console.log(res);
+        this.loaderservice.hideLoading();
+
         this.all_institutes = res;
       })
     }
@@ -46,6 +53,8 @@ export class InstituteListContentComponent implements OnInit {
 
       this.findinsttitutesservice.findInstituteCountryWise(this.country_id).subscribe(res =>{
         console.log(res);
+        this.loaderservice.hideLoading();
+
         this.all_institutes = res;
       })
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from 'src/app/all-services/loader.service';
 import { ScholarshipService } from 'src/app/all-services/scholarship.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class ScholarshipsContentComponent implements OnInit {
   scholarships : any = [];
   country_id : string;
 
-  constructor(private scholarshipservice : ScholarshipService) { }
+  constructor(private scholarshipservice : ScholarshipService,
+              private loaderservice : LoaderService) { }
 
   popOpen(){
     this.pop = true;
@@ -24,9 +26,10 @@ export class ScholarshipsContentComponent implements OnInit {
 
   ngOnInit() {
 
+    this.loaderservice.presentLoading();
     this.scholarshipservice.getShcolarships().subscribe(res => {
       console.log(res);
-
+      this.loaderservice.hideLoading();
       this.scholarships = res;
 
     });

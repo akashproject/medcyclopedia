@@ -153,6 +153,7 @@ export class ProfileContentsComponent implements OnInit {
 
       message: 'Saved Successfully',
       position: 'bottom',
+      duration: 2000,
       buttons: [
         {
           side: 'end',
@@ -173,6 +174,7 @@ export class ProfileContentsComponent implements OnInit {
     this.toastController.create({
 
       message: 'Profile data not saved',
+      duration : 2000,
       position: 'bottom',
       buttons: [
         {

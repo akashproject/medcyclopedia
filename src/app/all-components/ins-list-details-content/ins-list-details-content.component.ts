@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FindinstitutesService } from 'src/app/all-services/findinstitutes.service';
+import { LoaderService } from 'src/app/all-services/loader.service';
 
 
 @Component({
@@ -15,16 +16,20 @@ export class InsListDetailsContentComponent implements OnInit {
   institute_detail : any = [];
 
   constructor(private location:Location,
-              private findinstitute : FindinstitutesService) { }
+              private findinstitute : FindinstitutesService,
+              private loaderservice : LoaderService) { }
 
   ngOnInit() {
 
     this.loc = this.location.getState();
 
+    this.loaderservice.presentLoading();
+
     this.institute_id = this.loc.institute_id;
 
     this.findinstitute.findInstituteById(this.institute_id).subscribe(res =>{
       console.log(res);
+      this.loaderservice.hideLoading();
       this.institute_detail = res;
     })
 

@@ -9,12 +9,16 @@ export class ExpertCounsellingContentComponent implements OnInit {
 
   date : string;
   ptiming : string;
+  min_date: String = new Date().toISOString();
+  today = Date.now();
+
   constructor() { }
 
   ngOnInit() {}
 
   getPrefTiming(event){
     console.log(event);
+    console.log(this.today);
   }
 
   getPreferredMode(event){
@@ -29,6 +33,7 @@ export class ExpertCounsellingContentComponent implements OnInit {
 
   registerNow(){
 
+    console.log(this.min_date)
     console.log(this.date);
     console.log(this.ptiming)
   }

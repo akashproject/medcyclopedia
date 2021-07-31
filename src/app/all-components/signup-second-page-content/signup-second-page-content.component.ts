@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { LoaderService } from 'src/app/all-services/loader.service';
 import { RegisterService } from 'src/app/all-services/register.service';
 import { SendotpService } from 'src/app/all-services/sendotp.service';
 import { SigninService } from 'src/app/all-services/signin.service';
@@ -26,14 +27,17 @@ export class SignupSecondPageContentComponent implements OnInit {
     private signinservice: SigninService,
     private fb: FormBuilder,
     private router: Router,
-    public toastController: ToastController) { }
+    public toastController: ToastController,
+    private loaderservice : LoaderService) { }
 
   ngOnInit() {
 
+    this.loaderservice.presentLoading();
     console.log(this.userdetails.getMobile());
 
     this.otp.sendotp(this.userdetails.getMobile()).subscribe((res) =>{
       console.log(res);
+      this.loaderservice.hideLoading();
       this.otp_object = res;
       this.otp_received = this.otp_object.otp_value;
       console.log(this.otp_received);
@@ -89,9 +93,12 @@ export class SignupSecondPageContentComponent implements OnInit {
         console.log(this.error.error.error);
 
         var abc: string = this.error.error.error;
-        if (abc.startsWith("Duplicate entry")) {
+        if (abc.endsWith("'users_email_unique'")) {
           this.displayToast1();
 
+        }
+        else if(abc.endsWith("'users_mobile_unique'")){
+          this.displayToast3();
         }
         else {
           this.displayToast();
@@ -106,6 +113,7 @@ export class SignupSecondPageContentComponent implements OnInit {
     this.toastController.create({
 
       message: 'Registration is not done.',
+      duration: 2000,
       position: 'bottom',
       buttons: [
         {
@@ -128,6 +136,7 @@ export class SignupSecondPageContentComponent implements OnInit {
     this.toastController.create({
 
       message: 'This email is already been used',
+      
       position: 'bottom',
       buttons: [
         {
@@ -158,6 +167,31 @@ export class SignupSecondPageContentComponent implements OnInit {
           role: 'cancel',
           handler: () => {
             console.log('');
+            this.otpForm.patchValue({ place1 : "",place2 : "",place3 : "",place4 : "",place5 : "",place6 : "" })
+
+          }
+        }
+      ]
+
+    }).then((toast) => {
+      toast.present();
+    });
+  }
+
+  displayToast3() {
+    this.toastController.create({
+
+      message: 'This mobile is already been used',
+      
+      position: 'bottom',
+      buttons: [
+        {
+          side: 'end',
+          icon: 'close-outline',
+          role: 'cancel',
+          handler: () => {
+            console.log('');
+            this.router.navigate(['/signup-first-step']);
           }
         }
       ]

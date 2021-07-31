@@ -62,6 +62,7 @@ export class SignInContentComponent implements OnInit {
     this.toastController.create({
      
       message: 'Mobile or password invalid',
+      duration : 2000,
       position: 'bottom',
       buttons: [
         {
