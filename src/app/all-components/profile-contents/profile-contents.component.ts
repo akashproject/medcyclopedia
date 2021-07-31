@@ -8,6 +8,7 @@ import { ActionSheetController, ToastController } from '@ionic/angular';
 import { UtilService } from 'src/app/services/util.service';
 import { HTTP } from "@ionic-native/http/ngx/index";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoaderService } from 'src/app/all-services/loader.service';
 
 
 // const { Camera } = Plugins;
@@ -48,7 +49,8 @@ export class ProfileContentsComponent implements OnInit {
     private actionSheetController: ActionSheetController,
     public util: UtilService,
     private http: HttpClient,
-    private nativeHttp: HTTP) { }
+    private nativeHttp: HTTP,
+    private loaderservice : LoaderService) { }
 
   edit_pro: boolean = true;
   save_pro: boolean = false;
@@ -80,6 +82,8 @@ export class ProfileContentsComponent implements OnInit {
   }
   ngOnInit() {
 
+    this.loaderservice.presentLoading();
+
     this.user = this.signinService.getCurrentUser();
     this.user.subscribe(user => {
       if (user) {
@@ -91,6 +95,7 @@ export class ProfileContentsComponent implements OnInit {
           .subscribe(res => {
             console.log(res);
 
+            this.loaderservice.hideLoading();
             this.userdata = res;
             console.log(this.userdata.name);
             this.fullname = this.userdata.name;
