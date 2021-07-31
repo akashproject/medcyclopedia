@@ -12,13 +12,17 @@ export class ScholarshipsContentComponent implements OnInit {
   pop:boolean = false;
 
   scholarships : any = [];
+  scholarship_detail : string;
   country_id : string;
 
   constructor(private scholarshipservice : ScholarshipService,
               private loaderservice : LoaderService) { }
 
-  popOpen(){
+  popOpen(scholarship : any){
     this.pop = true;
+    console.log(scholarship);
+    this.scholarship_detail = scholarship;
+
   }
   popClose(){
     this.pop = false;

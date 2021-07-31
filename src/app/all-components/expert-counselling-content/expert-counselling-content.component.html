@@ -30,7 +30,7 @@
           <p>Preferred Date</p>
         </ion-col>
         <ion-col size="8">
-          <ion-datetime placeholder="Jul 28, 2021" display-timezone="utc" [(ngModel)]="date" name="date" [(ngModel)]="min_date"
+          <ion-datetime placeholder="Jul 28, 2021" displayFormat="MMM DD, YYYY" [(ngModel)]="date" name="date"
           [min]="min_date"></ion-datetime>
         </ion-col>
         <ion-col size="4">
@@ -39,21 +39,21 @@
         <ion-col size="8">
           <div class="radio_back d-flex" (change)="getPrefTiming($event.target.value)">
             <div class="port d-flex align-center">
-              <input type="radio" name="ptiming" id="morning" value="morning">
+              <input type="radio" name="ptiming" id="morning" value="morning" [disabled]="disable_time">
               <label for="morning" class=" d-flex align-center">
                 <span></span>
                 10am-1pm
               </label>
             </div>
             <div class="port d-flex align-center">
-              <input type="radio" name="ptiming" id="afternoon" value="afternoon">
+              <input type="radio" name="ptiming" id="afternoon" value="afternoon" [disabled]="disable_time">
               <label for="afternoon" class=" d-flex align-center">
                 <span></span>
                 1pm-5pm
               </label>
             </div>
             <div class="port d-flex align-center">
-              <input type="radio" name="ptiming" id="evening" value="evening">
+              <input type="radio" name="ptiming" id="evening" value="evening" [disabled]="disable_time">
               <label for="evening" class=" d-flex align-center">
                 <span></span>
                 5pm-8pm

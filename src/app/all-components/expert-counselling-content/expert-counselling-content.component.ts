@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpertCounsellingContentComponent implements OnInit {
 
-  date : string;
+  date : Date;
   ptiming : string;
-  min_date: String = new Date().toISOString();
-  today = Date.now();
+  min_date : Date = new Date();
+  current_time : Date = new Date();
+  // min_date: Date = new Date();
 
   constructor() { }
 
@@ -18,7 +19,8 @@ export class ExpertCounsellingContentComponent implements OnInit {
 
   getPrefTiming(event){
     console.log(event);
-    console.log(this.today);
+    // console.log(this.today);
+    console.log(this.current_time);
   }
 
   getPreferredMode(event){
@@ -36,6 +38,23 @@ export class ExpertCounsellingContentComponent implements OnInit {
     console.log(this.min_date)
     console.log(this.date);
     console.log(this.ptiming)
+  }
+
+  disable_time = false;
+
+  disableTime(){
+
+    if(this.current_time.getTime() > this.date.getTime()){
+      this.disable_time = true;
+    }
+    // if(this.current_time.getTime() > this.date.getTime(){
+    //   this.disable_time = true;
+    // }
+    // if(this.current_time.getTime() > this.date.getTime(){
+    //   this.disable_time = true;
+    // }
+    
+
   }
 
 }
