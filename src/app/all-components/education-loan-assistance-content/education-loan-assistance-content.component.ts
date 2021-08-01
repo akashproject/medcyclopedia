@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BankService } from 'src/app/all-services/bank.service';
+import { LoaderService } from 'src/app/all-services/loader.service';
 
 @Component({
   selector: 'app-education-loan-assistance-content',
@@ -10,7 +11,8 @@ export class EducationLoanAssistanceContentComponent implements OnInit {
 
   allBanks : any;
   bankdetails : string;
-  constructor(private bakService : BankService) { }
+  constructor(private bakService : BankService,
+              private loaderservice : LoaderService) { }
 
   pop:boolean = false;
 
@@ -25,8 +27,10 @@ export class EducationLoanAssistanceContentComponent implements OnInit {
 
   ngOnInit() {
 
+    this.loaderservice.presentLoading();
     this.bakService.getBanks().subscribe(res =>{
       console.log(res);
+      this.loaderservice.hideLoading();
       this.allBanks = res;
     })
   }

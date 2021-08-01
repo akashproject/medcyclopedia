@@ -20,4 +20,9 @@ export class FindinstitutesService {
 
     return this.http.get(`${environment.apiUrl}/institute/`+institute_id);
   }
+
+  findInstituteCountryWise(country_id){
+
+    return this.http.get(`${environment.apiUrl}/institutes-countrywise/`+country_id);
+  }
 }

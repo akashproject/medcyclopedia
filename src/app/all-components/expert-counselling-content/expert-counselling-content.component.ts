@@ -11,8 +11,9 @@ import {OrderServiceService} from 'src/app/all-services/order-service.service'
 })
 export class ExpertCounsellingContentComponent implements OnInit {
 
-  date : string;
+  date : Date;
   ptiming : string;
+
 
   readioSelected:any;
   readioSelected2:any;
@@ -22,10 +23,18 @@ export class ExpertCounsellingContentComponent implements OnInit {
 
   constructor(private orderservice:OrderServiceService) { }
 
+  min_date : Date = new Date();
+  current_time : Date = new Date();
+  // min_date: Date = new Date();
+
+  
+
   ngOnInit() {}
 
   getPrefTiming(event){
     console.log(event);
+    // console.log(this.today);
+    console.log(this.current_time);
   }
 
   getPreferredMode(event){
@@ -43,6 +52,7 @@ export class ExpertCounsellingContentComponent implements OnInit {
   registerNow(){
     
 
+    console.log(this.min_date)
     console.log(this.date);
     console.log(this.ptiming)
 
@@ -88,6 +98,23 @@ export class ExpertCounsellingContentComponent implements OnInit {
     } catch (error) {
       console.log(error['description'])
     }
+  }
+
+  disable_time = false;
+
+  disableTime(){
+
+    if(this.current_time.getTime() > this.date.getTime()){
+      this.disable_time = true;
+    }
+    // if(this.current_time.getTime() > this.date.getTime(){
+    //   this.disable_time = true;
+    // }
+    // if(this.current_time.getTime() > this.date.getTime(){
+    //   this.disable_time = true;
+    // }
+    
+
   }
 
 }

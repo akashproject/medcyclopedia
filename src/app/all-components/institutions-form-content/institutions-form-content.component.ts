@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoursedetailsService } from 'src/app/all-services/coursedetails.service';
 import { FindinstitutesService } from 'src/app/all-services/findinstitutes.service';
+import { LoaderService } from 'src/app/all-services/loader.service';
 import { StatesService } from 'src/app/all-services/states.service';
 
 @Component({
@@ -18,13 +19,16 @@ export class InstitutionsFormContentComponent implements OnInit {
   constructor(private stateService : StatesService,
               private coursedetailsservice : CoursedetailsService,
               private findinsttitutesservice : FindinstitutesService,
+              private loaderservice : LoaderService,
               private router : Router) { }
 
   ngOnInit() {
 
     console.log(this.coursedetailsservice.getCourseId());
+    this.loaderservice.presentLoading();
     this.stateService.getStates().subscribe(res => {
       console.log(res);
+      this.loaderservice.hideLoading();
       this.allStates = res;
     })
   }

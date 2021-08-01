@@ -1,19 +1,31 @@
-
-
-<div class="card">
+<div class="card" *ngFor="let scholarship of scholarships">
   <div class="area">
     <img src="assets/images/s1.png" alt="">
-    <h2>All India Pre-medical Scholarship Test</h2>
+    <h2>{{ scholarship?.title }}</h2>
   </div>
   <div class="button">
-    <ion-button color="custom" fill="clear" (click)="popOpen()">
+    <ion-button color="custom" fill="clear" (click)="popOpen(scholarship)">
       Details
     </ion-button>
   </div>
-  
+
+  <div class="popup" *ngIf="pop">
+    <div class="back">
+      <ion-icon name="close-outline" (click)="popClose()"></ion-icon>
+      <div class="area">
+        <p>{{ scholarship_detail?.title }}</p>
+      </div>
+      <div class="del">
+        <span>Description</span>
+        <a href="{{ scholarship.description }}" >CLICK HERE TO VIEW</a>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
-<div class="card">
+<!-- <div class="card">
   <div class="area">
     <img src="assets/images/s2.png" alt="">
     <h2>All India Youth Scholarships Entrance Examinations (AIYSEE)</h2>
@@ -48,5 +60,4 @@
     </div>
   </div>
   
-</div>
-
+</div> -->
