@@ -30,6 +30,7 @@
     "@ionic/angular": "^5.5.2",
     "@ionic/storage": "^3.0.6",
     "@ionic/storage-angular": "^3.0.6",
+    "capacitor-razorpay": "github:razorpay/razorpay-capacitor",
     "cordova-sqlite-storage": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
